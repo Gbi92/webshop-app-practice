@@ -13,15 +13,14 @@ const pool = mysql.createPool({
 export const db = {
   query(query, values) {
     return new Promise((resolve, reject) => {
-      pool.query(query, values, (err, results, fields) => {
-        console.log(config);
+      pool.query(query, values, (err, results) => {
         if (err) {
           reject(err);
 
           return;
         }
 
-        resolve({ results, fields });
+        resolve({ results });
       });
     });
   },
