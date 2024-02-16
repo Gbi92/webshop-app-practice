@@ -1,0 +1,12 @@
+.page-header {
+  height: 70px;
+  padding: 0 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: chocolate;
+
+  .menu-container {
+    display: flex;
+  }
+}
