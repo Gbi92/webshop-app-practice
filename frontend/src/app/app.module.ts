@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NewsCardComponent } from './components/news-card/news-card.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
+import { SignupFormComponent } from './components/signup-form/signup-form.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { RegistrationComponent } from './pages/registration/registration.compone
     HeaderComponent,
     NewsCardComponent,
     RegistrationComponent,
+    SignupFormComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

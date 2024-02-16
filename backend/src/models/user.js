@@ -8,7 +8,7 @@ export const userModel = {
 
   async insertUserData(name, email, password) {
     let insertResult = await db.query('INSERT INTO user (name, email, password) VALUES (?,?,?)', [name, email, password]);
-    let result = await db.query('SELECT id, email, isAdmin, isVerified FROM user WHERE id = ?', [insertResult.results.insertId]);
+    let result = await db.query('SELECT email, isAdmin, isVerified FROM user WHERE id = ?', [insertResult.results.insertId]);
     return result;
   }
 };
