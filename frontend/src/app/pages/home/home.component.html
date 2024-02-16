@@ -1,5 +1,6 @@
 <app-header></app-header>
-<p>home works!</p>
-<div *ngFor="let newsItem of news">
-  <div>{{newsItem.content}}</div>
+<div class="news-container">
+  <ng-container *ngFor="let newsItem of news">
+    <app-news-card [news]="newsItem"></app-news-card>
+  </ng-container>
 </div>
