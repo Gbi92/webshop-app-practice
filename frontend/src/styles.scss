@@ -19,12 +19,40 @@ body {
   font-family: 'Roboto Regular', Arial, sans-serif;
 }
 
-.my-button {
+:root {
+  --main-bg-color: #D69482;
+  --main-text-color: #4C5771;
+  --secondary-bg-color: #BE7E88;
+  --secondary-text-color: #FFE6D8;
+  --light: #FFE6D8;
+  --dark: #9B6F8A;
+}
+
+.app-button {
   display: block;
-  border: 2px solid black;
+  border: 2px solid var(--light);
   border-radius: 5px;
   width: 85px;
   padding: 5px 10px;
   margin: 0 3px;
   text-align: center;
+
+  &.primary {
+    background-color: var(--light);
+    color: var(--dark);
+
+    &:hover {
+      color: var(--main-text-color);
+    }
+  }
+
+  &.secondary {
+    color: var(--light);
+  }
+}
+
+.app-button:hover {
+  background-color: var(--light);
+  color: var(--dark);
+  cursor: pointer;
 }
