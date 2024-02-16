@@ -7,6 +7,10 @@
   background-color: var(--secondary-bg-color);
   // box-shadow: 0 8px 12px -4px rgba(76, 87, 113,0.5);
 
+  a {
+    text-decoration: none;
+  }
+
   .menu-container {
     display: flex;
   }
