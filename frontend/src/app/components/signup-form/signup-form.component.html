@@ -61,4 +61,9 @@
     <p class="reg-form-error-message" *ngIf="signupForm.get('userData.password')?.hasError('required')">Password is required</p>
     <p class="reg-form-error-message" *ngIf="signupForm.get('userData.password')?.hasError('minlength')">Password must be at least 8 characters</p>
   </div>
+  <app-alert 
+    *ngIf="errorMessage"
+    [message]="errorMessage"
+    (close)="onHandleError()"
+  ></app-alert>
 </div>

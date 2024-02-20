@@ -16,6 +16,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { NewsCardComponent } from './components/news-card/news-card.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
     NewsCardComponent,
     RegistrationComponent,
     SignupFormComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

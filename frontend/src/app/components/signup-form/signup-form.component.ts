@@ -28,9 +28,15 @@ export class SignupFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.apiService
-      .register(this.signupForm.value.userData)
-      .subscribe((response) => console.log(response));
+    this.apiService.register(this.signupForm.value.userData).subscribe({
+      next: (res) => res,
+      error: (err) => (this.errorMessage = err.error),
+    });
+
     this.signupForm.reset();
+  }
+
+  onHandleError() {
+    this.errorMessage = '';
   }
 }
