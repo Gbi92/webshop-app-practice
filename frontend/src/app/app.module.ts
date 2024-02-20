@@ -1,6 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgIconsModule } from '@ng-icons/core';
+import {
+  matPerson,
+  matLock,
+  matEmail,
+} from '@ng-icons/material-icons/baseline';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +26,13 @@ import { SignupFormComponent } from './components/signup-form/signup-form.compon
     RegistrationComponent,
     SignupFormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgIconsModule.withIcons({ matPerson, matLock, matEmail }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
