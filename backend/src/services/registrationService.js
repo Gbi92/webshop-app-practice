@@ -11,7 +11,7 @@ export const registrationService = {
       const hashedPassword = await this.encryptPassword(userData.password);
       return userModel.insertUserData(userData.name, userData.email, hashedPassword) 
     } else {
-      throw new ValidationError('Email is already taken.');
+      throw new ValidationError('Email is already taken.', 400);
     }
   },
 
@@ -24,22 +24,22 @@ export const registrationService = {
 
 function validateInput(input) {
   if (Object.keys(input).length === 0) {
-    throw new ValidationError('Name, email and password are required.');
+    throw new ValidationError('Name, email and password are required.', 400);
   }
 
   if (!input.password) {
-    throw new ValidationError('Password is required');
+    throw new ValidationError('Password is required', 400);
   }
 
   if (!input.name) {
-    throw new ValidationError('Name is required');
+    throw new ValidationError('Name is required', 400);
   }
 
   if (!input.email) {
-    throw new ValidationError('Email is required.');
+    throw new ValidationError('Email is required.', 400);
   }
 
   if (input.password.length < 8) {
-    throw new ValidationError('Password must be at least 8 characters.');
+    throw new ValidationError('Password must be at least 8 characters.', 400);
   }
 }
