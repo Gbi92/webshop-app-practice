@@ -3,3 +3,8 @@ export interface RegistrationResponse {
   isAdmin: boolean;
   isVerified: boolean;
 }
+
+export interface LoginResponse {
+  status: string;
+  token: string;
+}

@@ -1,0 +1,33 @@
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-card-container">
+      <div class="login-card-title">Login</div>
+      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="login-form-input email">
+          <ng-icon name="matEmail"></ng-icon>
+          <input
+            type="email"
+            name="email"
+            formControlName="email"
+            placeholder="Email*"
+            required
+          />
+        </div>
+        <div class="login-form-input password">
+          <ng-icon name="matLock"></ng-icon>
+          <input 
+            type="password"
+            name="password"
+            formControlName="password"
+            placeholder="Password*"
+            required
+          />
+        </div>
+        <button class="login-form-button" type="submit">Login</button>
+      </form>
+      <div class="login-form-error">
+        <p class="login-form-error-message">error</p>
+      </div>
+    </div>
+  </div>
+</div>
