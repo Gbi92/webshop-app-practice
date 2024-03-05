@@ -2,7 +2,7 @@ import { db } from '../data/connection';
 
 export const userModel = {
   async selectEmailData(email) {
-    let result = await db.query('SELECT * FROM user WHERE email = ?', [email]);
+    let result = await db.query('SELECT email FROM user WHERE email = ?', [email]);
     return result;
   },
 
