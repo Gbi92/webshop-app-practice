@@ -23,7 +23,7 @@
             required
           />
         </div>
-        <button class="login-form-button" type="submit">Login</button>
+        <button class="login-form-button" type="submit">Sign in</button>
       </form>
       <div *ngIf="loginForm.get('email')?.invalid 
               && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)"
@@ -42,4 +42,5 @@
       ></app-alert>
     </div>
   </div>
+  <p>Not a member yet? <a class="register-link" routerLink="/register">Create an account</a></p>
 </div>

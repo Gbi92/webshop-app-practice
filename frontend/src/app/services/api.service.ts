@@ -6,6 +6,7 @@ import { NewsList } from '../models/news';
 import { Observable } from 'rxjs';
 import { UserData } from '../models/userData';
 import { LoginResponse, RegistrationResponse } from './api.service.model';
+import { Product } from '../models/products';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,10 @@ export class ApiService {
 
   getNews(): Observable<NewsList> {
     return this.http.get<NewsList>(`${this.basePath}/news`);
+  }
+
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.basePath}/products`);
   }
 
   register(userData: UserData): Observable<RegistrationResponse> {

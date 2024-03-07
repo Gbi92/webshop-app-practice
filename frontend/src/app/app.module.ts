@@ -18,6 +18,8 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ShopComponent } from './pages/shop/shop.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { LoginComponent } from './pages/login/login.component';
     SignupFormComponent,
     AlertComponent,
     LoginComponent,
+    ShopComponent,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,
