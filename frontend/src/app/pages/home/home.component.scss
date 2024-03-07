@@ -1,3 +1,19 @@
+.home-img-container {
+  width: 100%;
+  height: 560px;
+  background: center no-repeat url("../../../assets/images/coffee-background.jpg");
+  position: relative;
+
+  .shop-btn {
+    position: absolute;
+    left: 10%;
+    bottom: 100px;
+    margin: 20px;
+    font-family: 'Roboto Bold', Arial, sans-serif;
+    font-size: 20px;
+  }
+}
+
 .news-container {
   display: flex;
   justify-content: center;

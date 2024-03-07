@@ -5,13 +5,26 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--secondary-bg-color);
-  // box-shadow: 0 8px 12px -4px rgba(76, 87, 113,0.5);
-
-  a {
-    text-decoration: none;
-  }
 
   .menu-container {
     display: flex;
+
+    .cart-button {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      padding: 7px 7px 5px;
+      margin: 0 3px;
+      color: var(--light);
+
+      &-counter {
+        font-family: 'Roboto Bold', Arial, sans-serif;
+        color: #F7F5DD;
+      }
+    }
+
+    .cart-button:hover {
+      cursor: pointer;
+    }
   }
 }

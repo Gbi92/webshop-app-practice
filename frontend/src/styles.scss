@@ -37,10 +37,11 @@ body {
   display: block;
   border: 2px solid var(--light);
   border-radius: 5px;
-  width: 85px;
+  min-width: 85px;
   padding: 5px 10px;
   margin: 0 3px;
   text-align: center;
+  text-decoration: none;
 
   &.primary {
     background-color: var(--light);
