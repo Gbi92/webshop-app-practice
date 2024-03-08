@@ -4,5 +4,5 @@
   </div>
   <div class="product-card-name">{{product.name}}</div>
   <div class="product-card-price">{{product.price | currency}}</div>
-  <div class="product-card-btn">Add to Cart</div>
+  <div class="product-card-btn" (click)="onAddToCart(product)">Add to Cart</div>
 </div>

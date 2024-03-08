@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../models/products';
 import { environment } from '../../../environments/environment.development';
+
+import { Product } from '../../models/products';
+import { ShoppingService } from '../../services/shopping-service/shopping.service';
 
 @Component({
   selector: 'app-product-card',
@@ -10,4 +12,11 @@ import { environment } from '../../../environments/environment.development';
 export class ProductCardComponent {
   @Input() product!: Product;
   imgBasePath = `${environment.apiUrl}/images/`;
+
+  constructor(private shoppingService: ShoppingService) {}
+
+  onAddToCart(product: Product) {
+    this.shoppingService.addedProductEmitter.next(product);
+    this.shoppingService.addedPlusOneEmitter.next(true);
+  }
 }

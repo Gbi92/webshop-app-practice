@@ -20,6 +20,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     LoginComponent,
     ShopComponent,
     ProductCardComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

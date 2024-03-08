@@ -38,5 +38,10 @@
     background-color:  var(--secondary-bg-color);
     color: var(--secondary-text-color);
     border-radius: 0 0 5px 5px;
+
+    &:hover {
+      cursor: pointer;
+      font-family: 'Roboto Bold', Arial, sans-serif;
+    }
   }
 }
