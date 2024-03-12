@@ -1,29 +1,25 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
-import { ShoppingService } from '../../services/shopping-service/shopping.service';
 import { Product } from '../../models/products';
+import { ApiService } from '../../services/api-service/api.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
-export class CartComponent implements OnInit, OnDestroy {
+export class CartComponent implements OnInit {
+  cartId = '';
   productList: Product[] = [];
-  private addedProductSub!: Subscription;
+  storedCartId = localStorage.getItem('cartId');
 
-  constructor(private shoppingService: ShoppingService) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.addedProductSub = this.shoppingService.addedProductEmitter.subscribe(
-      (addedProduct) => {
-        this.productList.push(addedProduct);
-      }
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.addedProductSub.unsubscribe();
+    this.cartId = this.storedCartId ? this.storedCartId : '';
+    this.apiService
+      .getCartItems(this.cartId)
+      .subscribe((response) => (this.productList = response));
+    // TODO: if empty show message on page
   }
 }

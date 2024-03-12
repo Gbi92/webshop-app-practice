@@ -5,7 +5,11 @@ import { environment } from '../../../environments/environment.development';
 import { NewsList } from '../../models/news';
 import { Observable } from 'rxjs';
 import { UserData } from '../../models/userData';
-import { LoginResponse, RegistrationResponse } from './api.service.model';
+import {
+  CartResponse,
+  LoginResponse,
+  RegistrationResponse,
+} from './api.service.model';
 import { Product } from '../../models/products';
 
 @Injectable({
@@ -22,6 +26,17 @@ export class ApiService {
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.basePath}/products`);
+  }
+
+  getCartItems(cartId: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.basePath}/carts/${cartId}`);
+  }
+
+  addItemToCart(cartId: string, productId: number): Observable<CartResponse[]> {
+    return this.http.post<CartResponse[]>(`${this.basePath}/carts/item`, {
+      cartId,
+      productId,
+    });
   }
 
   register(userData: UserData): Observable<RegistrationResponse> {
