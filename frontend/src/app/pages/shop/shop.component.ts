@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product } from '../../models/products';
 import { ApiService } from '../../services/api-service/api.service';
 
@@ -8,6 +8,7 @@ import { ApiService } from '../../services/api-service/api.service';
   styleUrl: './shop.component.scss',
 })
 export class ShopComponent implements OnInit {
+  @Output() cartIncreased: EventEmitter<number> = new EventEmitter();
   products: Product[] = [];
 
   constructor(private apiService: ApiService) {}
@@ -16,5 +17,9 @@ export class ShopComponent implements OnInit {
     this.apiService
       .getProducts()
       .subscribe((productList) => (this.products = productList));
+  }
+
+  onProductAdded(cartItemCount: number) {
+    this.cartIncreased.emit(cartItemCount);
   }
 }

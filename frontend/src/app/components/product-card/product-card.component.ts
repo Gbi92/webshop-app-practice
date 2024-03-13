@@ -1,9 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { v4 as uuid } from 'uuid';
 
 import { Product } from '../../models/products';
-import { ShoppingService } from '../../services/shopping-service/shopping.service';
 import { ApiService } from '../../services/api-service/api.service';
 
 @Component({
@@ -12,14 +11,12 @@ import { ApiService } from '../../services/api-service/api.service';
   styleUrl: './product-card.component.scss',
 })
 export class ProductCardComponent {
+  @Output() productAdded: EventEmitter<number> = new EventEmitter();
   @Input() product!: Product;
   imgBasePath = `${environment.apiUrl}/images/`;
-  cartCounter = 0;
+  cartItemCount = 0;
 
-  constructor(
-    private shoppingService: ShoppingService,
-    private apiService: ApiService
-  ) {}
+  constructor(private apiService: ApiService) {}
 
   onAddToCart(product: Product) {
     let cartId = '';
@@ -32,10 +29,14 @@ export class ProductCardComponent {
       cartId = storedCartId;
     }
 
-    this.apiService
-      .addItemToCart(cartId, product.id)
-      .subscribe((cartContent) => {
-        this.cartCounter = cartContent.length;
-      });
+    this.apiService.addItemToCart(cartId, product.id).subscribe({
+      next: (res) => {
+        this.cartItemCount = res.length;
+      },
+      error: (err) => console.log(err),
+      complete: () => {
+        this.productAdded.emit(this.cartItemCount);
+      },
+    });
   }
 }
