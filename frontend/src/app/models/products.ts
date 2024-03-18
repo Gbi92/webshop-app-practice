@@ -6,3 +6,18 @@ export interface Product {
   description: string;
   type: string;
 }
+
+export const emptyProduct = {
+  id: -1,
+  name: '',
+  price: -1,
+  image_path: '',
+  description: '',
+  type: '',
+};
+
+export interface CartProduct {
+  product: Product;
+  quantity: number;
+  totalPrice: number;
+}

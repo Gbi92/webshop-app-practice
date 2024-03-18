@@ -7,6 +7,10 @@ import {
   matPerson,
   matLock,
   matEmail,
+  matClose,
+  matArrowBackIos,
+  matAdd,
+  matRemove,
 } from '@ng-icons/material-icons/baseline';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -41,7 +45,15 @@ import { CartComponent } from './pages/cart/cart.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgIconsModule.withIcons({ matPerson, matLock, matEmail }),
+    NgIconsModule.withIcons({
+      matPerson,
+      matLock,
+      matEmail,
+      matClose,
+      matArrowBackIos,
+      matAdd,
+      matRemove,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

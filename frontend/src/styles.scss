@@ -62,3 +62,19 @@ body {
   color: var(--dark);
   cursor: pointer;
 }
+
+.flex-wrapper {
+  display: flex;
+
+  &.evenly {
+    justify-content: space-evenly;
+  }
+
+  &.between {
+    justify-content: space-between;
+  }
+
+  &.column {
+    flex-direction: column;
+  }
+}

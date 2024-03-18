@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment.development';
 
-import { Product } from '../../models/products';
+import { CartProduct, Product, emptyProduct } from '../../models/products';
 import { ApiService } from '../../services/api-service/api.service';
+import { EMPTY, Observable, groupBy, mergeMap, reduce, toArray } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -10,16 +12,37 @@ import { ApiService } from '../../services/api-service/api.service';
 })
 export class CartComponent implements OnInit {
   cartId = '';
-  productList: Product[] = [];
+  cartItemList: Observable<CartProduct[]> = EMPTY;
   storedCartId = localStorage.getItem('cartId');
+  imgBasePath = `${environment.apiUrl}/images/`;
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.cartId = this.storedCartId ? this.storedCartId : '';
-    this.apiService
-      .getCartItems(this.cartId)
-      .subscribe((response) => (this.productList = response));
+    this.cartItemList = this.apiService.getCartItems(this.cartId).pipe(
+      groupBy((product) => product.id),
+      mergeMap((group) =>
+        group.pipe(
+          reduce(
+            (acc: CartProduct, curr: Product) => {
+              if (acc.quantity === 0) {
+                acc.product = curr;
+              }
+              acc.quantity += 1;
+              acc.totalPrice += curr.price;
+              return acc;
+            },
+            {
+              quantity: 0,
+              totalPrice: 0,
+              product: emptyProduct,
+            }
+          )
+        )
+      ),
+      toArray()
+    );
     // TODO: if empty show message on page
   }
 }

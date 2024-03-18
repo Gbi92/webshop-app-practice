@@ -1,5 +1,53 @@
-<p>cart works!</p>
-<ng-container *ngFor="let product of productList">
-  <div>{{product.id}}</div>
-  <div>{{product.name}}</div>
-</ng-container>
+<div class="cart-page">
+  <h1 class="cart-page-title">Your cart</h1>
+  <a class="shop-link" routerLink="/shop"> <span><ng-icon name="matArrowBackIos"></ng-icon></span> Continue shopping</a>
+  <div class="cart-page-container">
+    <div class="cart-page-container-content">
+      <table class="shopping-cart-table">
+        <tbody class="cart-item" *ngFor="let cartItem of cartItemList | async">
+          <tr class="item-info">
+            <td class="col image">
+              <div class="img-container">
+                <!-- TODO: image should be link -->
+                <img class="product-img" src="{{imgBasePath}}{{cartItem.product.image_path}}" alt="{{cartItem.product.image_path}}">
+              </div>
+            </td>
+            <td class="col quantity">
+              <div class="quantity-container">
+                <div class="btn-modify"><ng-icon name="matRemove"></ng-icon></div>
+                <div class="quantity-number">{{cartItem.quantity}}</div>
+                <div class="btn-modify"><ng-icon name="matAdd"></ng-icon></div>
+              </div>
+            </td>
+            <td class="col item">
+              <!-- TODO: name should be link -->
+              <div class="item-name">{{cartItem.product.name}}</div>
+              <div class="item-price">{{cartItem.product.price | currency}}</div>
+            </td>
+            <td class="col subtotal">
+              <div>{{cartItem.totalPrice | currency}}</div>
+            </td>
+            <td class="col btn">
+              <div class="remove-item-btn">
+                <ng-icon class="remove-icon-size" name="matClose"></ng-icon>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="empty-btn app-button secondary">Empty the cart</div>
+    </div>
+    <div class="cart-page-container-summary flex-wrapper column between">
+      <h2 class="summary-title">Order</h2>
+      <div class="total-sum flex-wrapper between">
+        <div>Total</div>
+        <div>sum</div>
+      </div>
+      <div class="shipping-info flex-wrapper between">
+        <div>Shipping</div>
+        <div>Calculated at next step</div>
+      </div>
+      <div class="app-button primary">ORDER</div>
+    </div>
+  </div>
+</div>

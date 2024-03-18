@@ -1,0 +1,137 @@
+.cart-page {
+  background-color: var(--main-bg-color);
+  min-height: 100vh;
+  color: var(--secondary-text-color);
+
+  &-title {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Roboto Bold', Arial, sans-serif;
+    font-size: 22px;
+  }
+
+  .shop-link {
+    text-decoration: none;
+    padding: 15px;
+    color: var(--secondary-text-color);
+  }
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+
+    &-content {
+      min-width: 60%;
+      width: auto;
+      padding: 15px 10px;
+
+      .shopping-cart-table {
+        min-width: 100%;
+        width: auto;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+
+        .cart-item {
+          border-top: 1px solid var(--light);
+        }
+
+        .cart-item:last-child {
+          border-bottom: 1px solid var(--light);
+        }
+
+        .col {
+          padding: 15px;
+          vertical-align: top;
+
+          &.image {
+            width: 145px;
+
+            .product-img {
+              width: 145px;
+              height: 105px;
+              object-fit: contain;
+            }
+          }
+
+          &.quantity {
+            width: 110px;
+
+            .quantity-container {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              border: 2px solid var(--light);
+
+              .btn-modify {
+                background-color: var(--light);
+                color: var(--secondary-bg-color);
+                padding: 4px 3px 0;
+
+                &:hover {
+                  cursor: pointer;
+                  color: var(--dark);
+                }
+              }
+
+              .quantity-number {
+                font-family: 'Roboto Bold', Arial, sans-serif;
+                color: #F7F5DD;
+              }
+            }
+          }
+
+          &.item {
+            min-width: 250px;
+
+            .item-name {
+              font-size: 16px;
+            }
+
+            .item-price {
+              font-size: 0.8rem;
+            }
+          }
+
+          &.subtotal {
+            padding-right: 0;
+            font-size: 18px;
+            font-family: 'Roboto Bold', Arial, sans-serif;
+          }
+
+          &.btn {
+            padding-right: 0;
+
+            .remove-icon-size {
+              height: 22px;
+              width: 22px;
+              font-size: 22px;
+            }
+          }
+        }
+      }
+
+      .empty-btn {
+        width: 120px;
+        font-size: 14px;
+      }
+    }
+
+    &-summary {
+      width: 33%;
+      height: 250px;
+      padding: 25px;
+      margin-right: 20px;
+      margin-top: 15px;
+      background-color: var(--secondary-bg-color);
+      border-radius: 5px;
+
+      .summary-title {
+        font-size: 20px;
+      }
+
+      .total-sum {
+        font-family: 'Roboto Bold', Arial, sans-serif;
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { environment } from '../../../environments/environment.development';
 import { NewsList } from '../../models/news';
-import { Observable } from 'rxjs';
+import { Observable, concatAll, from, map } from 'rxjs';
 import { UserData } from '../../models/userData';
 import {
   CartResponse,
@@ -28,8 +28,14 @@ export class ApiService {
     return this.http.get<Product[]>(`${this.basePath}/products`);
   }
 
-  getCartItems(cartId: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.basePath}/carts/${cartId}`);
+  getCartItems(cartId: string): Observable<Product> {
+    const products = this.http.get<Product[]>(
+      `${this.basePath}/carts/${cartId}`
+    );
+    return products.pipe(
+      map((productList: Product[]) => from(productList)),
+      concatAll()
+    );
   }
 
   addItemToCart(cartId: string, productId: number): Observable<CartResponse[]> {

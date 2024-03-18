@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { ApiService } from '../../services/api-service/api.service';
+import { toArray } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
     this.cartId = this.storedCartId ? this.storedCartId : '';
     this.apiService
       .getCartItems(this.cartId)
+      .pipe(toArray())
       .subscribe((cartResponse) => (this.cartCounter = cartResponse.length));
   }
 }
