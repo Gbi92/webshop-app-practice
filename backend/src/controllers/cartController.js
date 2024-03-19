@@ -12,8 +12,8 @@ export const cartController = {
 
   async addToCart(req, res) {
     try {
-      let addToCartData = await cartService.addItemToCart(req.body);
-      res.status(200).json(addToCartData.results);
+      let addToCartData = await cartService.addItemToCart(req.params.cartId, req.body.productId);
+      res.status(200).json(addToCartData.results[0]);
     } catch (error) {
       res.status(500).json('Internal server error');
     }

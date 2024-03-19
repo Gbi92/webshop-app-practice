@@ -14,7 +14,13 @@ export const cartModel = {
 
   async insertItemData(cartId, productId) {
     const insertedResult = await db.query('INSERT INTO cart (cart_id, product_id) VALUES (?,?);', [cartId, productId]);
-    const result = await db.query('SELECT * FROM cart WHERE id=?;', [insertedResult.results.insertId]);
+    const result = await db.query(
+      `SELECT m.* 
+        FROM cart AS c
+        INNER JOIN merchandise AS m ON m.id=c.product_id
+        WHERE c.id=?;`, 
+      [insertedResult.results.insertId]
+    );
     return result;
   }
 };

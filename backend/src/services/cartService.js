@@ -8,8 +8,8 @@ export const cartService = {
     return data;
   },
 
-  async addItemToCart(cartData) {
+  async addItemToCart(cartId, productId) {
     // TODO: validate productId
-    return cartModel.insertItemData(cartData.cartId, cartData.productId);
+    return cartModel.insertItemData(cartId, productId);
   }
 }
