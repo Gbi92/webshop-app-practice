@@ -7,6 +7,8 @@
   <div class="menu-container">
     <a class="app-button primary" routerLink="/login">LOGIN</a>
     <a class="app-button secondary" routerLink="/shop">SHOP</a>
-    <a class="cart-button" routerLink="/cart">CART [ <span class="cart-button-counter">{{cartCounter}}</span> ]</a>
+    <a class="cart-button" routerLink="/cart">
+      CART [ <span class="cart-button-counter">{{cartCounter | async}}</span> ]
+    </a>
   </div>
 </div>

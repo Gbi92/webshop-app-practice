@@ -1,9 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
+import {
+  EMPTY,
+  Observable,
+  concatMap,
+  filter,
+  from,
+  groupBy,
+  mergeMap,
+  reduce,
+  take,
+  tap,
+  toArray,
+} from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { CartProduct, Product, emptyProduct } from '../../models/products';
-import { ApiService } from '../../services/api-service/api.service';
-import { EMPTY, Observable, groupBy, mergeMap, reduce, toArray } from 'rxjs';
+import { selectItemList, selectTotalSum } from '../../store/cart.selector';
+import { CartActions } from '../../store/cart.actions';
 
 @Component({
   selector: 'app-cart',
@@ -12,15 +26,24 @@ import { EMPTY, Observable, groupBy, mergeMap, reduce, toArray } from 'rxjs';
 })
 export class CartComponent implements OnInit {
   cartId = '';
-  cartItemList: Observable<CartProduct[]> = EMPTY;
   storedCartId = localStorage.getItem('cartId');
   imgBasePath = `${environment.apiUrl}/images/`;
 
-  constructor(private apiService: ApiService) {}
+  totalSum$ = this.store.select(selectTotalSum);
+  cartItemList$ = this.store.select(selectItemList);
+  groupedCartItems$: Observable<CartProduct[]> = EMPTY;
+
+  constructor(private store: Store) {
+    this.cartId = this.storedCartId ? this.storedCartId : '';
+    this.store.dispatch(CartActions.loadCartItems({ cartId: this.cartId }));
+  }
 
   ngOnInit(): void {
-    this.cartId = this.storedCartId ? this.storedCartId : '';
-    this.cartItemList = this.apiService.getCartItems(this.cartId).pipe(
+    // TODO: group items in store
+    this.groupedCartItems$ = this.cartItemList$.pipe(
+      take(2),
+      filter((array) => array.length > 0),
+      concatMap((productList: Product[]) => from(productList)),
       groupBy((product) => product.id),
       mergeMap((group) =>
         group.pipe(
@@ -41,8 +64,16 @@ export class CartComponent implements OnInit {
           )
         )
       ),
-      toArray()
+      toArray(),
+      tap((a) => console.log(a))
     );
-    // TODO: if empty show message on page
+  }
+
+  // TODO: if empty show message on page
+
+  addOneProduct(productId: number) {
+    this.store.dispatch(
+      CartActions.addItem({ cartId: this.cartId, productId })
+    );
   }
 }

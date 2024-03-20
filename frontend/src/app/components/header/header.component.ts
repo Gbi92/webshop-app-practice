@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { ApiService } from '../../services/api-service/api.service';
-import { toArray } from 'rxjs';
+import { selectCartLength } from '../../store/cart.selector';
+import { CartActions } from '../../store/cart.actions';
 
 @Component({
   selector: 'app-header',
@@ -9,17 +10,14 @@ import { toArray } from 'rxjs';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
-  @Input() cartCounter = 0;
+  cartCounter = this.store.select(selectCartLength);
   cartId = '';
   storedCartId = localStorage.getItem('cartId');
 
-  constructor(private apiService: ApiService) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.cartId = this.storedCartId ? this.storedCartId : '';
-    this.apiService
-      .getCartItems(this.cartId)
-      .pipe(toArray())
-      .subscribe((cartResponse) => (this.cartCounter = cartResponse.length));
+    this.store.dispatch(CartActions.loadCartItems({ cartId: this.cartId }));
   }
 }

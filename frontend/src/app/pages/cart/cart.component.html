@@ -1,10 +1,10 @@
 <div class="cart-page">
   <h1 class="cart-page-title">Your cart</h1>
   <a class="shop-link" routerLink="/shop"> <span><ng-icon name="matArrowBackIos"></ng-icon></span> Continue shopping</a>
-  <div class="cart-page-container">
-    <div class="cart-page-container-content">
+  <div class="flex-wrapper between">
+    <div class="cart-page-content">
       <table class="shopping-cart-table">
-        <tbody class="cart-item" *ngFor="let cartItem of cartItemList | async">
+        <tbody class="cart-item" *ngFor="let cartItem of (groupedCartItems$ | async)">
           <tr class="item-info">
             <td class="col image">
               <div class="img-container">
@@ -16,7 +16,7 @@
               <div class="quantity-container">
                 <div class="btn-modify"><ng-icon name="matRemove"></ng-icon></div>
                 <div class="quantity-number">{{cartItem.quantity}}</div>
-                <div class="btn-modify"><ng-icon name="matAdd"></ng-icon></div>
+                <div class="btn-modify" (click)="addOneProduct(cartItem.product.id)"><ng-icon name="matAdd"></ng-icon></div>
               </div>
             </td>
             <td class="col item">
@@ -37,11 +37,11 @@
       </table>
       <div class="empty-btn app-button secondary">Empty the cart</div>
     </div>
-    <div class="cart-page-container-summary flex-wrapper column between">
+    <div class="cart-page-summary flex-wrapper column between">
       <h2 class="summary-title">Order</h2>
       <div class="total-sum flex-wrapper between">
         <div>Total</div>
-        <div>sum</div>
+        <div>{{totalSum$ | async | currency}}</div>
       </div>
       <div class="shipping-info flex-wrapper between">
         <div>Shipping</div>

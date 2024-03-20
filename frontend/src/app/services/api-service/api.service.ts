@@ -24,14 +24,8 @@ export class ApiService {
     return this.http.get<Product[]>(`${this.basePath}/products`);
   }
 
-  getCartItems(cartId: string): Observable<Product> {
-    const products = this.http.get<Product[]>(
-      `${this.basePath}/carts/${cartId}`
-    );
-    return products.pipe(
-      map((productList: Product[]) => from(productList)),
-      concatAll()
-    );
+  getCartItems(cartId: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.basePath}/carts/${cartId}`);
   }
 
   addItemToCart(cartId: string, productId: number): Observable<Product> {
