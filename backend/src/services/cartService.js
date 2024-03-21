@@ -1,15 +1,26 @@
 import { cartModel } from "../models/cart";
 
 export const cartService = {
+  // TODO: validations
   async getCartResult(cartId) {
-    // TODO: validate cartId
-    let data = await cartModel.selectCartData(cartId);
+    const data = await cartModel.selectCartData(cartId);
 
     return data;
   },
 
   async addItemToCart(cartId, productId) {
-    // TODO: validate productId
     return cartModel.insertItemData(cartId, productId);
+  },
+
+  async removeItemFromCart({ cartId, itemId }) {
+    return cartModel.deleteItem(cartId, itemId);
+  },
+
+  async removeItemsFromCart({ cartId, itemId }) {
+    return cartModel.deleteItems(cartId, itemId);
+  },
+
+  async removeAllItemsFromCart(cartId) {
+    return cartModel.deleteAllItems(cartId);
   }
 }

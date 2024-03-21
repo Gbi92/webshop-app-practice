@@ -4,7 +4,7 @@ import { ValidationError } from '../validationError';
 export const productController = {
   async getAllProductData(req, res) {
     try {
-      let allProductData = await productService.getAllProductResult();
+      const allProductData = await productService.getAllProductResult();
       res.status(200).json(allProductData.results);
     } catch (error) {
       if (error instanceof ValidationError) {

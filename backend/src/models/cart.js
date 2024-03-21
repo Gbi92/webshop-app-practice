@@ -22,5 +22,20 @@ export const cartModel = {
       [insertedResult.results.insertId]
     );
     return result;
-  }
+  },
+
+  async deleteItem(cartId, itemId) {
+    const removeCartItem = await db.query('DELETE FROM cart WHERE cart_id=? AND product_id=? LIMIT 1', [cartId, itemId]);
+    return removeCartItem;
+  },
+
+  async deleteItems(cartId, itemId) {
+    const removeCartItems = await db.query('DELETE FROM cart WHERE cart_id=? AND product_id=?', [cartId, itemId]);
+    return removeCartItems;
+  },
+
+  async deleteAllItems(cartId) {
+    const removeAllCartItems = await db.query('DELETE FROM cart WHERE cart_id=?', [cartId]);
+    return removeAllCartItems;
+  },
 };

@@ -6,7 +6,7 @@ export const registrationService = {
   async register(userData) {
     validateInput(userData);
 
-    let data = await userModel.selectEmailData(userData.email);
+    const data = await userModel.selectEmailData(userData.email);
     if (data.results.length === 0) {
       const hashedPassword = await this.encryptPassword(userData.password);
       return userModel.insertUserData(userData.name, userData.email, hashedPassword) 

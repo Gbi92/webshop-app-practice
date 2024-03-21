@@ -2,7 +2,7 @@ import { db } from '../data/connection';
 
 export const userModel = {
   async selectEmailData(email) {
-    let result = await db.query('SELECT email FROM user WHERE email = ?', [email]);
+    const result = await db.query('SELECT email FROM user WHERE email = ?', [email]);
     return result;
   },
 
@@ -12,8 +12,8 @@ export const userModel = {
   },
 
   async insertUserData(name, email, password) {
-    let insertResult = await db.query('INSERT INTO user (name, email, password) VALUES (?,?,?)', [name, email, password]);
-    let result = await db.query('SELECT email, isAdmin, isVerified FROM user WHERE id = ?', [insertResult.results.insertId]);
+    const insertResult = await db.query('INSERT INTO user (name, email, password) VALUES (?,?,?)', [name, email, password]);
+    const result = await db.query('SELECT email, isAdmin, isVerified FROM user WHERE id = ?', [insertResult.results.insertId]);
     return result;
   }
 };

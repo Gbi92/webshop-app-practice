@@ -13,13 +13,13 @@ export const loginService = {
       throw new ValidationError('Password is required', 400);
     }
 
-    let userData = await userModel.selectUserData(email);
+    const userData = await userModel.selectUserData(email);
 
     if (userData.results.length === 0) {
       throw new ValidationError('Email or password is incorrect', 401);
     }
 
-    let match = bcrypt.compareSync(password, userData.results[0].password);
+    const match = bcrypt.compareSync(password, userData.results[0].password);
 
     if (match === false) {
       throw new ValidationError('Password is incorrect', 401);

@@ -18,7 +18,9 @@ router.get('/news', newsController.getNewsData);
 router.get('/products', productController.getAllProductData);
 router.get('/carts/:cartId', cartController.getCartData);
 router.post('/carts/:cartId/item', cartController.addToCart);
-router.delete('/carts/:cartId/item/:productId', cartController.removeFromCart);
+router.delete('/carts/:cartId/items/:itemId/last', cartController.removeFromCart);
+router.delete('/carts/:cartId/items/:itemId', cartController.removeAllFromCart);
+router.delete('/carts/:cartId', cartController.emptyCart);
 router.post('/register', registrationController.registerUser);
 router.post('/login', loginController.login)
 
