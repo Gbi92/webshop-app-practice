@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment.development';
 import { NewsList } from '../../models/news';
-import { Observable, concatAll, from, map } from 'rxjs';
 import { UserData } from '../../models/userData';
 import { LoginResponse, RegistrationResponse } from './api.service.model';
-import { Product } from '../../models/products';
+import { Product } from '../../models/product';
 
 @Injectable({
   providedIn: 'root',

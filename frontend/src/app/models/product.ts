@@ -15,9 +15,3 @@ export const emptyProduct = {
   description: '',
   type: '',
 };
-
-export interface CartProduct {
-  product: Product;
-  quantity: number;
-  totalPrice: number;
-}

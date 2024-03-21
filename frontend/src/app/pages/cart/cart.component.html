@@ -4,7 +4,7 @@
   <div class="flex-wrapper between">
     <div class="cart-page-content">
       <table class="shopping-cart-table">
-        <tbody class="cart-item" *ngFor="let cartItem of (groupedCartItems$ | async)">
+        <tbody class="cart-item" *ngFor="let cartItem of (cartItemList$ | async)">
           <tr class="item-info">
             <td class="col image">
               <div class="img-container">

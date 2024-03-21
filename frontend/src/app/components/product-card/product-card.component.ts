@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { environment } from '../../../environments/environment.development';
 import { v4 as uuid } from 'uuid';
 
-import { Product } from '../../models/products';
+import { Product } from '../../models/product';
 import { CartActions } from '../../store/cart.actions';
 
 @Component({
