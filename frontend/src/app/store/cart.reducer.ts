@@ -95,10 +95,25 @@ export const cartReducer = createReducer(
     error: error.message,
   })),
 
-  on(CartActions.deleteLastItemSuccess, (state, { product }) => ({
+  on(CartActions.deleteLastItemSuccess, (state, { removedProduct }) => ({
     ...state,
-    itemList: removeLastItem(state, product),
+    itemList: removeLastItem(state, removedProduct),
     cartLength: state.cartLength - 1,
-    totalSum: state.totalSum - product.price,
+    totalSum: state.totalSum - removedProduct.price,
+  })),
+
+  on(CartActions.deleteAllItemsSuccess, (state, { removedProduct }) => ({
+    ...state,
+    itemList: [
+      ...state.itemList.filter((item) => item.product.id !== removedProduct.id),
+    ],
+    cartLength:
+      state.cartLength -
+      (state.itemList.find((item) => item.product.id === removedProduct.id)
+        ?.quantity ?? 0),
+    totalSum:
+      state.totalSum -
+      (state.itemList.find((item) => item.product.id === removedProduct.id)
+        ?.totalPrice ?? 0),
   }))
 );

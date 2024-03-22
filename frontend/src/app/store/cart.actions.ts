@@ -13,7 +13,10 @@ export const CartActions = createActionGroup({
     'Add Item Success': props<{ newCartItem: Product }>(),
     'Add Item Failure': props<{ error: Error }>(),
     'Delete Last Item': props<{ cartId: string; product: Product }>(),
-    'Delete Last Item Success': props<{ product: Product }>(),
+    'Delete Last Item Success': props<{ removedProduct: Product }>(),
     'Delete Last Item Failure': props<{ error: Error }>(),
+    'Delete All Items': props<{ cartId: string; product: Product }>(),
+    'Delete All Items Success': props<{ removedProduct: Product }>(),
+    'Delete All Items Failure': props<{ error: Error }>(),
   },
 });

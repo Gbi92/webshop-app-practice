@@ -79,13 +79,31 @@ export class CartEffects {
           .pipe(
             map((result) =>
               CartActions.deleteLastItemSuccess({
-                product: params.product,
+                removedProduct: params.product,
               })
             ),
             catchError((error) =>
               of(CartActions.deleteLastItemFailure({ error }))
             )
           )
+      )
+    )
+  );
+
+  deleteItemsFromCart = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CartActions.deleteAllItems),
+      exhaustMap((params) =>
+        this.apiService.deleteItemsFromCart(params.cartId, params.product).pipe(
+          map((result) =>
+            CartActions.deleteAllItemsSuccess({
+              removedProduct: params.product,
+            })
+          ),
+          catchError((error) =>
+            of(CartActions.deleteAllItemsFailure({ error }))
+          )
+        )
       )
     )
   );

@@ -28,7 +28,7 @@
               <div>{{cartItem.totalPrice | currency}}</div>
             </td>
             <td class="col btn">
-              <div class="remove-item-btn">
+              <div class="remove-item-btn" (click)="deleteAllProducts(cartItem.product)">
                 <ng-icon class="remove-icon-size" name="matClose"></ng-icon>
               </div>
             </td>

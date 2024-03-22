@@ -71,7 +71,7 @@
 
             .quantity-number {
               font-family: 'Roboto Bold', Arial, sans-serif;
-              color: #F7F5DD;
+              color: var(--highlight-color);
             }
           }
         }
@@ -96,6 +96,11 @@
 
         &.btn {
           padding-right: 0;
+
+          .remove-item-btn:hover {
+            cursor: pointer;
+            color: var(--highlight-color);
+          }
 
           .remove-icon-size {
             height: 22px;

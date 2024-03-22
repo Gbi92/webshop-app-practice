@@ -39,4 +39,10 @@ export class CartComponent implements OnInit {
       CartActions.deleteLastItem({ cartId: this.cartId, product })
     );
   }
+
+  deleteAllProducts(product: Product) {
+    this.store.dispatch(
+      CartActions.deleteAllItems({ cartId: this.cartId, product })
+    );
+  }
 }
