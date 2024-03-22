@@ -45,4 +45,8 @@ export class CartComponent implements OnInit {
       CartActions.deleteAllItems({ cartId: this.cartId, product })
     );
   }
+
+  emptyCart() {
+    this.store.dispatch(CartActions.emptyCart({ cartId: this.cartId }));
+  }
 }

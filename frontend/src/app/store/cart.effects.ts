@@ -108,5 +108,17 @@ export class CartEffects {
     )
   );
 
+  emptyCart = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CartActions.emptyCart),
+      exhaustMap((params) =>
+        this.apiService.emptyCart(params.cartId).pipe(
+          map((result) => CartActions.emptyCartSuccess()),
+          catchError((error) => of(CartActions.emptyCartFailure({ error })))
+        )
+      )
+    )
+  );
+
   constructor(private actions$: Actions, private apiService: ApiService) {}
 }

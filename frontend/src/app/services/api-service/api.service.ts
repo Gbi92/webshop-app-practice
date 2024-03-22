@@ -37,8 +37,8 @@ export class ApiService {
   deleteLastItemFromCart(
     cartId: string,
     product: Product
-  ): Observable<{ deletedMsg: string }> {
-    return this.http.delete<{ deletedMsg: string }>(
+  ): Observable<{ deleteMsg: string }> {
+    return this.http.delete<{ deleteMsg: string }>(
       `${this.basePath}/carts/${cartId}/items/${product.id}/last`
     );
   }
@@ -46,9 +46,15 @@ export class ApiService {
   deleteItemsFromCart(
     cartId: string,
     product: Product
-  ): Observable<{ deletedMsg: string }> {
-    return this.http.delete<{ deletedMsg: string }>(
+  ): Observable<{ deleteMsg: string }> {
+    return this.http.delete<{ deleteMsg: string }>(
       `${this.basePath}/carts/${cartId}/items/${product.id}`
+    );
+  }
+
+  emptyCart(cartId: string): Observable<{ deleteMsg: string }> {
+    return this.http.delete<{ deleteMsg: string }>(
+      `${this.basePath}/carts/${cartId}`
     );
   }
 

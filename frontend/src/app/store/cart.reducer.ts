@@ -115,5 +115,12 @@ export const cartReducer = createReducer(
       state.totalSum -
       (state.itemList.find((item) => item.product.id === removedProduct.id)
         ?.totalPrice ?? 0),
+  })),
+
+  on(CartActions.emptyCartSuccess, (state) => ({
+    ...state,
+    itemList: [],
+    cartLength: 0,
+    totalSum: 0,
   }))
 );
