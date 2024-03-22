@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { selectItemList, selectTotalSum } from '../../store/cart.selector';
 import { CartActions } from '../../store/cart.actions';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-cart',
@@ -30,6 +31,12 @@ export class CartComponent implements OnInit {
   addOneProduct(productId: number) {
     this.store.dispatch(
       CartActions.addItem({ cartId: this.cartId, productId })
+    );
+  }
+
+  deleteOneProduct(product: Product) {
+    this.store.dispatch(
+      CartActions.deleteLastItem({ cartId: this.cartId, product })
     );
   }
 }

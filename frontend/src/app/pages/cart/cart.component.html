@@ -14,7 +14,7 @@
             </td>
             <td class="col quantity">
               <div class="quantity-container">
-                <div class="btn-modify"><ng-icon name="matRemove"></ng-icon></div>
+                <div class="btn-modify" (click)="deleteOneProduct(cartItem.product)"><ng-icon name="matRemove"></ng-icon></div>
                 <div class="quantity-number">{{cartItem.quantity}}</div>
                 <div class="btn-modify" (click)="addOneProduct(cartItem.product.id)"><ng-icon name="matAdd"></ng-icon></div>
               </div>

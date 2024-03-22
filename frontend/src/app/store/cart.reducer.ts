@@ -40,6 +40,31 @@ const appendItemToCart = (state: Cart, newCartItem: Product) => {
   }
 };
 
+const removeLastItem = (state: Cart, removedItem: Product) => {
+  let deleteRow = false;
+  const items = state.itemList.map((item) => {
+    if (item.product.id === removedItem.id) {
+      if (item.quantity - 1 === 0) {
+        deleteRow = true;
+      }
+      return {
+        ...item,
+        quantity: item.quantity - 1,
+        totalPrice: item.totalPrice - removedItem.price,
+      };
+    }
+    return item;
+  });
+
+  if (!deleteRow) {
+    return items;
+  } else {
+    return [
+      ...state.itemList.filter((item) => item.product.id !== removedItem.id),
+    ];
+  }
+};
+
 export const cartReducer = createReducer(
   initialState,
 
@@ -68,5 +93,12 @@ export const cartReducer = createReducer(
     ...state,
     loadingStatus: LoadingState.ERROR,
     error: error.message,
+  })),
+
+  on(CartActions.deleteLastItemSuccess, (state, { product }) => ({
+    ...state,
+    itemList: removeLastItem(state, product),
+    cartLength: state.cartLength - 1,
+    totalSum: state.totalSum - product.price,
   }))
 );

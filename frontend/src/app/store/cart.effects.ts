@@ -70,5 +70,25 @@ export class CartEffects {
     )
   );
 
+  deleteLastItemFromCart = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CartActions.deleteLastItem),
+      exhaustMap((params) =>
+        this.apiService
+          .deleteLastItemFromCart(params.cartId, params.product)
+          .pipe(
+            map((result) =>
+              CartActions.deleteLastItemSuccess({
+                product: params.product,
+              })
+            ),
+            catchError((error) =>
+              of(CartActions.deleteLastItemFailure({ error }))
+            )
+          )
+      )
+    )
+  );
+
   constructor(private actions$: Actions, private apiService: ApiService) {}
 }
