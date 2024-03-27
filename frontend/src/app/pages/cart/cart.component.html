@@ -7,10 +7,11 @@
         <tbody class="cart-item" *ngFor="let cartItem of (cartItemList$ | async)">
           <tr class="item-info">
             <td class="col image">
-              <div class="img-container">
-                <!-- TODO: image should be link -->
-                <img class="product-img" src="{{imgBasePath}}{{cartItem.product.image_path}}" alt="{{cartItem.product.image_path}}">
-              </div>
+              <a [routerLink]="['../product', cartItem.product.id]">
+                <div class="img-container">
+                  <img class="product-img" src="{{imgBasePath}}{{cartItem.product.image_path}}" alt="{{cartItem.product.image_path}}">
+                </div>
+              </a>
             </td>
             <td class="col quantity">
               <div class="quantity-container">
@@ -20,8 +21,9 @@
               </div>
             </td>
             <td class="col item">
-              <!-- TODO: name should be link -->
-              <div class="item-name">{{cartItem.product.name}}</div>
+              <a class="item-name" [routerLink]="['../product', cartItem.product.id]">
+                {{cartItem.product.name | titlecase}}
+              </a>
               <div class="item-price">{{cartItem.product.price | currency}}</div>
             </td>
             <td class="col subtotal">

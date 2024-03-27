@@ -87,7 +87,15 @@
           min-width: 250px;
 
           .item-name {
+            text-decoration: none;
+            color: var(--secondary-text-color);
+            font-family: 'Roboto Bold', Arial, sans-serif;
             font-size: 16px;
+
+            &:hover {
+              text-decoration: underline;
+              color: var(--highlight-color);
+            }
           }
 
           .item-price {

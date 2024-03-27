@@ -27,6 +27,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { ProductComponent } from './pages/product/product.component';
 import { cartReducer } from './store/cart.reducer';
 import { CartEffects } from './store/cart.effects';
 
@@ -42,6 +43,7 @@ import { CartEffects } from './store/cart.effects';
     ShopComponent,
     ProductCardComponent,
     CartComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

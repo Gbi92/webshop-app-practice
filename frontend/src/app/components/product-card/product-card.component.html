@@ -1,8 +1,10 @@
 <div class="product-card">
-  <div class="product-card-img-container">
-    <img class="product-card-img" src="{{imgBasePath}}{{product.image_path}}" alt="{{product.image_path}}">
-  </div>
-  <div class="product-card-name">{{product.name}}</div>
-  <div class="product-card-price">{{product.price | currency}}</div>
+  <a class="product-details" [routerLink]="['../product', product.id]">
+    <div class="product-card-img-container">
+      <img class="product-card-img" src="{{imgBasePath}}{{product.image_path}}" alt="{{product.image_path}}">
+    </div>
+    <div class="product-card-name">{{product.name | titlecase}}</div>
+    <div class="product-card-price">{{product.price | currency}}</div>
+  </a>
   <div class="product-card-btn" (click)="onAddToCart(product)">Add to Cart</div>
 </div>
