@@ -20,7 +20,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { NewsCardComponent } from './components/news-card/news-card.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { AlertComponent } from './components/alert/alert.component';
@@ -36,7 +35,6 @@ import { CartEffects } from './store/cart.effects';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    NewsCardComponent,
     RegistrationComponent,
     SignupFormComponent,
     AlertComponent,

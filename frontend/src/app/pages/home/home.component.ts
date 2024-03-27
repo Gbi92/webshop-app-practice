@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../environments/environment.development';
+
 import { ApiService } from '../../services/api-service/api.service';
 import { News } from '../../models/news';
 
@@ -9,6 +11,7 @@ import { News } from '../../models/news';
 })
 export class HomeComponent implements OnInit {
   news: News[] = [];
+  imgBasePath = `${environment.apiUrl}/images/`;
 
   constructor(private apiService: ApiService) {}
 

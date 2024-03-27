@@ -1,8 +1,18 @@
-<div class="home-img-container">
-  <a class="app-button primary shop-btn" routerLink="/shop">SHOP NOW</a>
-</div>
-<div class="news-container">
-  <ng-container *ngFor="let newsItem of news">
-    <app-news-card [news]="newsItem"></app-news-card>
-  </ng-container>
+<div class="home-page">
+  <div class="home-page-img-container">
+    <a class="app-button primary shop-btn" routerLink="/shop">SHOP NOW</a>
+  </div>
+  <div class="home-page-news-container">
+    <ng-container *ngFor="let newsItem of news">
+      <div class="news-card" [ngClass]="{'vertical': newsItem.imgOrientation === 'vertical'}">
+        <div class="news-card-img-container">
+          <img class="news-card-img" src="{{imgBasePath}}{{newsItem.imagePath}}" alt="{{newsItem.imagePath}}">
+        </div>
+        <div class="news-card-content">
+          <div class="news-card-text">{{newsItem.content}}</div>
+          <div class="news-card-title">{{newsItem.title}}</div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </div>
