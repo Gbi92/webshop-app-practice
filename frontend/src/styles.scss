@@ -1,3 +1,14 @@
+
+:root {
+  --main-bg-color: #D69482;
+  --main-text-color: #4C5771;
+  --secondary-bg-color: #BE7E88;
+  --secondary-text-color: #FFE6D8;
+  --light: #FFE6D8;
+  --dark: #9B6F8A;
+  --highlight-color: #F7F5DD;
+}
+
 @font-face {
   font-family: 'Roboto Regular';
   src: url('assets/fonts/Roboto-Regular.ttf');
@@ -22,16 +33,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body {
   font-family: 'Roboto Regular', Arial, sans-serif;
-}
-
-:root {
-  --main-bg-color: #D69482;
-  --main-text-color: #4C5771;
-  --secondary-bg-color: #BE7E88;
-  --secondary-text-color: #FFE6D8;
-  --light: #FFE6D8;
-  --dark: #9B6F8A;
-  --highlight-color: #F7F5DD;
 }
 
 .app-button {
@@ -73,6 +74,10 @@ body {
 
   &.between {
     justify-content: space-between;
+  }
+
+  &.around {
+    justify-content: space-around;
   }
 
   &.column {

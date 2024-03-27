@@ -12,6 +12,7 @@ export const cartService = {
     return cartModel.insertItemData(cartId, productId);
   },
 
+  // TODO: error handling -- check if affectedRows > 0
   async removeItemFromCart({ cartId, itemId }) {
     return cartModel.deleteItem(cartId, itemId);
   },

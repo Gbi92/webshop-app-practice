@@ -1,8 +1,8 @@
 <div class="cart-page">
   <h1 class="cart-page-title">Your cart</h1>
-  <a class="shop-link" routerLink="/shop"> <span><ng-icon name="matArrowBackIos"></ng-icon></span> Continue shopping</a>
-  <div class="flex-wrapper between">
+  <div class="cart-page-details flex-wrapper around" *ngIf="(cartItemList$ | async)?.length; else EmptyCart">
     <div class="cart-page-content">
+      <a class="shop-link" routerLink="/shop"><span><ng-icon name="matArrowBackIos"></ng-icon></span>Continue shopping</a>
       <table class="shopping-cart-table">
         <tbody class="cart-item" *ngFor="let cartItem of (cartItemList$ | async)">
           <tr class="item-info">
@@ -50,4 +50,10 @@
       <div class="app-button primary">ORDER</div>
     </div>
   </div>
+  <ng-template #EmptyCart>
+    <div class="cart-page-empty-cart">
+      <a class="shop-link" routerLink="/shop"> <span><ng-icon name="matArrowBackIos"></ng-icon></span> Continue shopping</a>
+      <div class="cart-page-empty-cart-text">Your cart is empty.</div>
+    </div>
+  </ng-template>
 </div>

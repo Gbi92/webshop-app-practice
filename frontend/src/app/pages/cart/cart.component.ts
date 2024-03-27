@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { Store } from '@ngrx/store';
 
@@ -11,7 +11,7 @@ import { Product } from '../../models/product';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
-export class CartComponent implements OnInit {
+export class CartComponent {
   cartId = '';
   storedCartId = localStorage.getItem('cartId');
   imgBasePath = `${environment.apiUrl}/images/`;
@@ -22,10 +22,6 @@ export class CartComponent implements OnInit {
   constructor(private store: Store) {
     this.cartId = this.storedCartId ? this.storedCartId : '';
     this.store.dispatch(CartActions.loadCartItems({ cartId: this.cartId }));
-  }
-
-  ngOnInit(): void {
-    // TODO: if empty show message on page
   }
 
   addOneProduct(productId: number) {
