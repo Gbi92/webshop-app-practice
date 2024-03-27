@@ -1,8 +1,13 @@
-.products-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 30px 0;
+.shop-page {
   background-color: var(--main-bg-color);
-  height: 100vh;
+  min-height: 100vh;
+}
+
+.products-container {
+  width: min(95%, 70rem);
+  margin: 0 auto;
+  padding-block: 2rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
 }

@@ -1,5 +1,4 @@
 .product-card {
-  margin: 10px;
   text-align: center;
   width: 200px;
   border-radius: 5px; 
@@ -16,6 +15,9 @@
   &-img-container {
     height: 250px;
     color: #CCD6F6;
+    border-top: 2px solid var(--light);
+    border-left: 2px solid var(--light);
+    border-right: 2px solid var(--light);
     border-radius: 5px 5px 0 0;
   }
 
