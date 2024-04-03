@@ -16,6 +16,7 @@ router.use(express.json());
 router.get('/hello', helloController.get);
 router.get('/news', newsController.getNewsData);
 router.get('/products', productController.getAllProductData);
+router.get('/products/:productId', productController.getProductData);
 router.get('/carts/:cartId', cartController.getCartData);
 router.post('/carts/:cartId/item', cartController.addToCart);
 router.delete('/carts/:cartId/items/:itemId/last', cartController.removeFromCart);
