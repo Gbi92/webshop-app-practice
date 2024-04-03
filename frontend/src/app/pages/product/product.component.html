@@ -1,1 +1,20 @@
-<p>product works!</p>
+<div class="product-page">
+  <div class="product-wrapper">
+    <div class="img-container">
+      <img class="product-img" src="{{imgBasePath}}{{product.image_path}}" alt="{{product.image_path}}">
+    </div>
+    <div class="product-details-container">
+      <div class="product-details name">{{product.name | titlecase}}</div>
+      <div class="product-details price">{{product.price | currency}}</div>
+      <div class="flex-wrapper center">
+        <div class="quantity-container">
+          <div class="btn-modify" (click)="decreaseQuantity()"><ng-icon name="matRemove"></ng-icon></div>
+          <div class="quantity-number">{{quantity}}</div>
+          <div class="btn-modify" (click)="increaseQuantity()"><ng-icon name="matAdd"></ng-icon></div>
+        </div>
+        <div class="app-button" (click)="addToCart()">Add to Cart</div>
+      </div>
+      <div class="product-details description">{{product.description}}</div>
+    </div>
+  </div>
+</div>

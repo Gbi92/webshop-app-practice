@@ -24,6 +24,10 @@ export class ApiService {
     return this.http.get<Product[]>(`${this.basePath}/products`);
   }
 
+  getProduct(productId: number): Observable<Product> {
+    return this.http.get<Product>(`${this.basePath}/products/${productId}`);
+  }
+
   getCartItems(cartId: string): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.basePath}/carts/${cartId}`);
   }
@@ -31,6 +35,17 @@ export class ApiService {
   addItemToCart(cartId: string, productId: number): Observable<Product> {
     return this.http.post<Product>(`${this.basePath}/carts/${cartId}/item`, {
       productId,
+    });
+  }
+
+  addItemsToCart(
+    cartId: string,
+    productId: number,
+    quantity: number
+  ): Observable<Product> {
+    return this.http.post<Product>(`${this.basePath}/carts/${cartId}/items`, {
+      productId,
+      quantity,
     });
   }
 
