@@ -9,19 +9,19 @@ export const cartModel = {
         WHERE cart.cart_id=?;`, 
       [cartId]
     );
-    return cartData;
+    return cartData.results;
   },
 
   async insertItemData(cartId, productId) {
     const insertedResult = await db.query('INSERT INTO cart (cart_id, product_id) VALUES (?,?);', [cartId, productId]);
     const result = await db.query(
-      `SELECT m.* 
+      `SELECT m.*, c.created_at 
         FROM cart AS c
         INNER JOIN merchandise AS m ON m.id=c.product_id
         WHERE c.id=?;`, 
       [insertedResult.results.insertId]
     );
-    return result;
+    return result.results[0];
   },
 
   async deleteItem(cartId, itemId) {

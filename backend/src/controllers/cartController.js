@@ -4,16 +4,25 @@ export const cartController = {
   async getCartData(req, res) {
     try {
       const cartData = await cartService.getCartResult(req.params.cartId);
-      res.status(200).json(cartData.results);
+      res.status(200).json(cartData);
     } catch (error) {
       res.status(500).json('Internal server error');
     }
   },
 
-  async addToCart(req, res) {
+  async addItemToCart(req, res) {
     try {
       const addToCartData = await cartService.addItemToCart(req.params.cartId, req.body.productId);
-      res.status(200).json(addToCartData.results[0]);
+      res.status(200).json(addToCartData);
+    } catch (error) {
+      res.status(500).json('Internal server error');
+    }
+  },
+
+  async addItemsToCart(req, res) {
+    try {
+      const addToCartData = await cartService.addItemsToCart(req.params.cartId, req.body.productId, req.body.quantity);
+      res.status(200).json(addToCartData);
     } catch (error) {
       res.status(500).json('Internal server error');
     }

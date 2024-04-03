@@ -12,6 +12,15 @@ export const cartService = {
     return cartModel.insertItemData(cartId, productId);
   },
 
+  async addItemsToCart(cartId, productId, quantity) {
+    const addedItems = [];
+    for (let i = 0; i < quantity; i++) {
+      const saved = await cartModel.insertItemData(cartId, productId);
+      addedItems.push(saved);
+    }
+    return addedItems;
+  },
+
   // TODO: error handling -- check if affectedRows > 0
   async removeItemFromCart({ cartId, itemId }) {
     return cartModel.deleteItem(cartId, itemId);
