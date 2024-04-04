@@ -19,7 +19,7 @@ export class ProductCardComponent {
 
   onAddToCart(product: Product) {
     let cartId = '';
-    let storedCartId = localStorage.getItem('cartId');
+    const storedCartId = localStorage.getItem('cartId');
 
     if (!storedCartId) {
       cartId = uuid();

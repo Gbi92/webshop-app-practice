@@ -70,6 +70,25 @@ export class CartEffects {
     )
   );
 
+  addItemsToCart = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CartActions.addItems),
+      exhaustMap((params) =>
+        this.apiService
+          .addItemsToCart(params.cartId, params.productId, params.quantity)
+          .pipe(
+            map((products) =>
+              CartActions.addItemsSuccess({
+                newCartItem: products[0],
+                quantity: params.quantity,
+              })
+            ),
+            catchError((error) => of(CartActions.addItemsFailure({ error })))
+          )
+      )
+    )
+  );
+
   deleteLastItemFromCart = createEffect(() =>
     this.actions$.pipe(
       ofType(CartActions.deleteLastItem),

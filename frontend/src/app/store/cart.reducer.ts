@@ -12,15 +12,19 @@ export const initialState: Cart = {
   error: '',
 };
 
-const appendItemToCart = (state: Cart, newCartItem: Product) => {
+const appendItemsToCart = (
+  state: Cart,
+  newCartItem: Product,
+  quantity: number = 1
+) => {
   let found = false;
   const items = state.itemList.map((item) => {
     if (item.product.id === newCartItem.id) {
       found = true;
       return {
         ...item,
-        quantity: item.quantity + 1,
-        totalPrice: item.totalPrice + newCartItem.price,
+        quantity: item.quantity + quantity,
+        totalPrice: item.totalPrice + newCartItem.price * quantity,
       };
     }
     return item;
@@ -33,8 +37,8 @@ const appendItemToCart = (state: Cart, newCartItem: Product) => {
       ...state.itemList,
       {
         product: newCartItem,
-        quantity: 1,
-        totalPrice: newCartItem.price,
+        quantity: quantity,
+        totalPrice: newCartItem.price * quantity,
       },
     ];
   }
@@ -84,12 +88,25 @@ export const cartReducer = createReducer(
 
   on(CartActions.addItemSuccess, (state, { newCartItem }) => ({
     ...state,
-    itemList: appendItemToCart(state, newCartItem),
+    itemList: appendItemsToCart(state, newCartItem),
     cartLength: state.cartLength + 1,
     totalSum: state.totalSum + newCartItem.price,
   })),
 
   on(CartActions.addItemFailure, (state, { error }) => ({
+    ...state,
+    loadingStatus: LoadingState.ERROR,
+    error: error.message,
+  })),
+
+  on(CartActions.addItemsSuccess, (state, { newCartItem, quantity }) => ({
+    ...state,
+    itemList: appendItemsToCart(state, newCartItem, quantity),
+    cartLength: state.cartLength + quantity,
+    totalSum: state.totalSum + newCartItem.price * quantity,
+  })),
+
+  on(CartActions.addItemsFailure, (state, { error }) => ({
     ...state,
     loadingStatus: LoadingState.ERROR,
     error: error.message,

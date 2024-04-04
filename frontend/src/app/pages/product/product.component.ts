@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { environment } from '../../../environments/environment.development';
+import { v4 as uuid } from 'uuid';
+
 import { ApiService } from '../../services/api-service/api.service';
 import { Product } from '../../models/product';
-import { ActivatedRoute } from '@angular/router';
-import { environment } from '../../../environments/environment.development';
+import { CartActions } from '../../store/cart.actions';
 
 @Component({
   selector: 'app-product',
@@ -15,7 +19,11 @@ export class ProductComponent implements OnInit {
   product!: Product;
   quantity = 0;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -39,7 +47,24 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart() {
-    // TODO
-    console.log('added', this.quantity, this.productId);
+    if (this.quantity > 0) {
+      let cartId = '';
+      const storedCartId = localStorage.getItem('cartId');
+
+      if (!storedCartId) {
+        cartId = uuid();
+        localStorage.setItem('cartId', cartId);
+      } else {
+        cartId = storedCartId;
+      }
+
+      this.store.dispatch(
+        CartActions.addItems({
+          cartId,
+          productId: this.productId,
+          quantity: this.quantity,
+        })
+      );
+    }
   }
 }

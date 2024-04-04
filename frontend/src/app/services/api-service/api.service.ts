@@ -42,8 +42,8 @@ export class ApiService {
     cartId: string,
     productId: number,
     quantity: number
-  ): Observable<Product> {
-    return this.http.post<Product>(`${this.basePath}/carts/${cartId}/items`, {
+  ): Observable<Product[]> {
+    return this.http.post<Product[]>(`${this.basePath}/carts/${cartId}/items`, {
       productId,
       quantity,
     });
