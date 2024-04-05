@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 
-import { helloController } from '../controllers';
 import { newsController } from '../controllers/newsController';
 import { registrationController } from '../controllers/registrationController';
 import { loginController } from '../controllers/loginController';
@@ -13,7 +12,6 @@ const router = express.Router();
 router.use(cors());
 router.use(express.json());
 
-router.get('/hello', helloController.get);
 router.get('/news', newsController.getNewsData);
 router.get('/products', productController.getAllProductData);
 router.get('/products/:productId', productController.getProductData);

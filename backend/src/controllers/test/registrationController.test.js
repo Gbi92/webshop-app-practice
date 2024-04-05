@@ -3,7 +3,7 @@ import { userModel } from '../../models/user';
 
 import app from '../../app';
 
-jest.mock("../src/models/user.js");
+jest.mock("../../models/user.js");
 
 describe('POST /register endpoint', () => {
   it('should return an error message when name is missing', (done) => {
