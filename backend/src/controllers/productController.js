@@ -1,3 +1,4 @@
+import logger from '../logger';
 import { productService } from '../services/productService';
 import { ValidationError } from '../validationError';
 
@@ -7,12 +8,8 @@ export const productController = {
       const allProductData = await productService.getAllProductResult();
       res.status(200).json(allProductData);
     } catch (error) {
-      if (error instanceof ValidationError) {
-        res.status(error.statusCode).json(error.message);
-      } else {
-        console.log(error);
-        res.status(500).json('Internal server error');
-      }
+      logger.error(`Cannot retrieve products data due to: ${error.message}`);
+      res.status(500).json('Internal server error');
     }
   },
 
@@ -21,10 +18,10 @@ export const productController = {
       const ProductData = await productService.getProductResult(req.params.productId);
       res.status(200).json(ProductData);
     } catch (error) {
+      logger.error(`Cannot retrieve product data due to: ${error.message}`);
       if (error instanceof ValidationError) {
         res.status(error.statusCode).json(error.message);
       } else {
-        console.log(error);
         res.status(500).json('Internal server error');
       }
     }

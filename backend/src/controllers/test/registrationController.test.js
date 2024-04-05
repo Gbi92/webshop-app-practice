@@ -1,7 +1,7 @@
 import request from "supertest";
-import { userModel } from '../src/models/user';
+import { userModel } from '../../models/user';
 
-import app from '../src/app';
+import app from '../../app';
 
 jest.mock("../src/models/user.js");
 

@@ -1,3 +1,4 @@
+import logger from '../logger.js';
 import { loginService } from '../services/loginService.js';
 import { ValidationError } from '../validationError.js';
 
@@ -9,10 +10,10 @@ export const loginController = {
       const result = await loginService.loginUser(email, password);
       res.status(200).json(result);
     } catch (error) {
+      logger.error(`Cannot login user due to: ${error.message}`);
       if (error instanceof ValidationError) {
         res.status(error.statusCode).json(error.message);
       } else {
-        console.log(error);
         res.status(500).json('Internal server error');
       }
     }
