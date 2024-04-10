@@ -12,6 +12,18 @@ export const cartModel = {
     return cartData.results;
   },
 
+  async selectCartProducts(cartId) {
+    const cartData = await db.query(
+      `SELECT merch.id AS product_id, SUM(merch.price) AS total_price, COUNT(*) AS quantity
+        FROM merchandise AS merch
+        INNER JOIN cart ON merch.id=cart.product_id
+        WHERE cart.cart_id=?
+        GROUP BY merch.id;`, 
+      [cartId]
+    );
+    return cartData.results;
+  },
+
   async insertItemData(cartId, productId) {
     const insertedResult = await db.query('INSERT INTO cart (cart_id, product_id) VALUES (?,?);', [cartId, productId]);
     const result = await db.query(

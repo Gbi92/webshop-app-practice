@@ -6,6 +6,7 @@ import { registrationController } from '../controllers/registrationController';
 import { loginController } from '../controllers/loginController';
 import { productController } from '../controllers/productController';
 import { cartController } from '../controllers/cartController';
+import { orderController } from '../controllers/orderController';
 
 const router = express.Router();
 
@@ -22,6 +23,8 @@ router.delete('/carts/:cartId/items/:itemId/last', cartController.removeFromCart
 router.delete('/carts/:cartId/items/:itemId', cartController.removeAllFromCart);
 router.delete('/carts/:cartId', cartController.emptyCart);
 router.post('/register', registrationController.registerUser);
-router.post('/login', loginController.login)
+router.post('/login', loginController.login);
+
+router.post('/order', orderController.addOrder);
 
 export default router;
