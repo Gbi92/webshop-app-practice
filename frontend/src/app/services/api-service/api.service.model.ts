@@ -1,7 +1,16 @@
+export interface NewsResponse {
+  id: number;
+  title: string;
+  content: string;
+  image_path: string;
+  img_orientation: 'vertical' | 'horizontal';
+  publish_date: number;
+}
+
 export interface RegistrationResponse {
   email: string;
-  isAdmin: boolean;
-  isVerified: boolean;
+  is_admin: boolean;
+  is_verified: boolean;
 }
 
 export interface LoginResponse {

@@ -1,4 +1,5 @@
 import { db } from '../data/connection';
+import { v4 as uuid } from 'uuid';
 
 export const userModel = {
   async selectEmailData(email) {
@@ -12,8 +13,10 @@ export const userModel = {
   },
 
   async insertUserData(name, email, password) {
-    const insertResult = await db.query('INSERT INTO user (name, email, password) VALUES (?,?,?)', [name, email, password]);
-    const result = await db.query('SELECT email, isAdmin, isVerified FROM user WHERE id = ?', [insertResult.results.insertId]);
-    return result;
+    const userId = uuid();
+    // TODO: transaction?
+    await db.query('INSERT INTO user (id, name, email, password) VALUES (?,?,?,?)', [userId, name, email, password]);
+    const result = await db.query('SELECT email, is_admin, is_verified FROM user WHERE id = ?', [userId]);
+    return result.results[0];
   }
 };

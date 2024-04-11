@@ -16,8 +16,6 @@ export class HomeComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService
-      .getNews()
-      .subscribe((newsList) => (this.news = newsList.news));
+    this.apiService.getNews().subscribe((newsList) => (this.news = newsList));
   }
 }

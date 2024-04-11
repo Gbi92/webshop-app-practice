@@ -34,8 +34,8 @@ export const loginService = {
     return jwt.sign(
       {
         userId: userData.id,
-        isAdmin: userData.isAdmin,
-        isVerified: userData.isVerified,
+        isAdmin: userData.is_admin,
+        isVerified: userData.is_verified,
       },
       config.tokenSecret,
     );

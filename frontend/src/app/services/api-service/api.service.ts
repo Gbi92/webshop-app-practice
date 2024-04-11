@@ -1,12 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 import { environment } from '../../../environments/environment.development';
-import { NewsList } from '../../models/news';
+
 import { UserData } from '../../models/userData';
-import { LoginResponse, RegistrationResponse } from './api.service.model';
 import { Product } from '../../models/product';
+import { News } from '../../models/news';
+import {
+  LoginResponse,
+  NewsResponse,
+  RegistrationResponse,
+} from './api.service.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +21,19 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getNews(): Observable<NewsList> {
-    return this.http.get<NewsList>(`${this.basePath}/news`);
+  getNews(): Observable<News[]> {
+    return this.http.get<NewsResponse[]>(`${this.basePath}/news`).pipe(
+      map((newsList) =>
+        newsList.map((item) => ({
+          id: item.id,
+          title: item.title,
+          content: item.content,
+          imagePath: item.image_path,
+          imgOrientation: item.img_orientation,
+          publishDate: item.publish_date,
+        }))
+      )
+    );
   }
 
   getProducts(): Observable<Product[]> {

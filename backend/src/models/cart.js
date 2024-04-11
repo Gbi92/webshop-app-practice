@@ -3,9 +3,9 @@ import { db } from "../data/connection";
 export const cartModel = {
   async selectCartData(cartId) {
     const cartData = await db.query(
-      `SELECT merch.id, merch.name, merch.price, merch.image_path 
-        FROM merchandise AS merch
-        INNER JOIN cart ON merch.id=cart.product_id
+      `SELECT p.id, p.name, p.price, p.image_path 
+        FROM product AS p
+        INNER JOIN cart ON p.id=cart.product_id
         WHERE cart.cart_id=?;`, 
       [cartId]
     );
@@ -14,24 +14,25 @@ export const cartModel = {
 
   async selectCartProducts(cartId) {
     const cartData = await db.query(
-      `SELECT merch.id AS product_id, SUM(merch.price) AS total_price, COUNT(*) AS quantity
-        FROM merchandise AS merch
-        INNER JOIN cart ON merch.id=cart.product_id
+      `SELECT p.id AS product_id, SUM(p.price) AS total_price, COUNT(*) AS quantity
+        FROM product AS p
+        INNER JOIN cart ON p.id=cart.product_id
         WHERE cart.cart_id=?
-        GROUP BY merch.id;`, 
+        GROUP BY p.id;`, 
       [cartId]
     );
     return cartData.results;
   },
 
   async insertItemData(cartId, productId) {
-    const insertedResult = await db.query('INSERT INTO cart (cart_id, product_id) VALUES (?,?);', [cartId, productId]);
+    // TODO: transaction?
+    await db.query('INSERT INTO cart (cart_id, product_id) VALUES (?,?);', [cartId, productId]);
     const result = await db.query(
-      `SELECT m.*, c.created_at 
+      `SELECT p.*, c.created_at 
         FROM cart AS c
-        INNER JOIN merchandise AS m ON m.id=c.product_id
-        WHERE c.id=?;`, 
-      [insertedResult.results.insertId]
+        INNER JOIN product AS p ON p.id=c.product_id
+        WHERE c.cart_id=?;`,
+      [cartId]
     );
     return result.results[0];
   },

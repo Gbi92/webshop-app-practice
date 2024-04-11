@@ -5,9 +5,8 @@ export const orderModel = {
   async insertOrderData(userId, shippingDetails, orderPrice, shippingPrice) {
     const { zip, city, street, countryId} = shippingDetails;
     const orderId = uuid();
-    // TODO: fix sql error
     await db.query(
-      'INSERT INTO `order` (id, user_id, zip_code, city, street, country_id, order_price, shipping_price) VALUES (?,?,?,?,?,?,?)',
+      'INSERT INTO `order` (id, user_id, zip_code, city, street, country_id, order_price, shipping_price) VALUES (?,?,?,?,?,?,?,?)',
       [orderId, userId, zip, city, street, countryId, orderPrice, shippingPrice]
     );
     const insertedOrder = await db.query('SELECT * FROM `order` WHERE id=?', [orderId]);

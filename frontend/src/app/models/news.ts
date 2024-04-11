@@ -6,7 +6,3 @@ export interface News {
   imgOrientation: 'vertical' | 'horizontal';
   publishDate: number;
 }
-
-export interface NewsList {
-  news: News[];
-}
