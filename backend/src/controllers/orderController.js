@@ -5,7 +5,8 @@ import { ValidationError } from "../validationError";
 export const orderController = {
   async addOrder(req, res) {
     try {
-      const addOrderData = await orderService.addOrder(req.headers.user_id, req.body);
+      // TODO: userId when it comes from token
+      const addOrderData = await orderService.addOrder(req.headers.userid, req.body);
       res.status(200).json(addOrderData);
     } catch (error) {
       logger.error(`Cannot add order due to: ${error.message}`);
