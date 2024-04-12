@@ -13,11 +13,17 @@ export class HeaderComponent implements OnInit {
   cartCounter = this.store.select(selectCartLength);
   cartId = '';
   storedCartId = localStorage.getItem('cartId');
+  isLoggedIn = localStorage.getItem('token') ? true : false;
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.cartId = this.storedCartId ? this.storedCartId : '';
     this.store.dispatch(CartActions.loadCartItems({ cartId: this.cartId }));
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.isLoggedIn = false;
   }
 }
