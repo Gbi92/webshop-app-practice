@@ -40,7 +40,7 @@ export class ApiService {
     return this.http.get<Product[]>(`${this.basePath}/products`);
   }
 
-  getProduct(productId: number): Observable<Product> {
+  getProduct(productId: string): Observable<Product> {
     return this.http.get<Product>(`${this.basePath}/products/${productId}`);
   }
 
@@ -48,7 +48,7 @@ export class ApiService {
     return this.http.get<Product[]>(`${this.basePath}/carts/${cartId}`);
   }
 
-  addItemToCart(cartId: string, productId: number): Observable<Product> {
+  addItemToCart(cartId: string, productId: string): Observable<Product> {
     return this.http.post<Product>(`${this.basePath}/carts/${cartId}/item`, {
       productId,
     });
@@ -56,7 +56,7 @@ export class ApiService {
 
   addItemsToCart(
     cartId: string,
-    productId: number,
+    productId: string,
     quantity: number
   ): Observable<Product[]> {
     return this.http.post<Product[]>(`${this.basePath}/carts/${cartId}/items`, {

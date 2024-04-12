@@ -15,7 +15,7 @@ import { CartActions } from '../../store/cart.actions';
 })
 export class ProductComponent implements OnInit {
   imgBasePath = `${environment.apiUrl}/images/`;
-  productId!: number;
+  productId = '';
   product!: Product;
   quantity = 0;
 

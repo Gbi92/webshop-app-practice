@@ -1,5 +1,5 @@
 export interface Product {
-  id: number;
+  id: string;
   name: string;
   price: number;
   image_path: string;
@@ -8,7 +8,7 @@ export interface Product {
 }
 
 export const emptyProduct = {
-  id: -1,
+  id: '',
   name: '',
   price: -1,
   image_path: '',

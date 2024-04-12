@@ -9,12 +9,12 @@ export const CartActions = createActionGroup({
     'Load Cart Items': props<{ cartId: string }>(),
     'Retrieved Cart Items': props<{ CartItems: CartProduct[] }>(),
     'Cart Items Load Failure': props<{ error: Error }>(),
-    'Add Item': props<{ cartId: string; productId: number }>(),
+    'Add Item': props<{ cartId: string; productId: string }>(),
     'Add Item Success': props<{ newCartItem: Product }>(),
     'Add Item Failure': props<{ error: Error }>(),
     'Add Items': props<{
       cartId: string;
-      productId: number;
+      productId: string;
       quantity: number;
     }>(),
     'Add Items Success': props<{ newCartItem: Product; quantity: number }>(),
