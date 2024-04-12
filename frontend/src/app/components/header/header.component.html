@@ -6,10 +6,7 @@
   </div>
   <div class="menu-container">
     <a class="app-button primary" routerLink="/shop">SHOP</a>
-    <a *ngIf="!isLoggedIn" class="app-button secondary" routerLink="/login">LOGIN</a>
-    <a *ngIf="isLoggedIn" class="app-button secondary" routerLink="/">
-      <div (click)="logout()">LOGOUT</div>
-    </a>
+    <div class="app-button secondary" (click)="logAction()">{{isNotLoggedIn ? 'LOGIN' : 'LOGOUT'}}</div>
     <a class="cart-button" routerLink="/cart">
       CART [ <span class="cart-button-counter">{{cartCounter | async}}</span> ]
     </a>

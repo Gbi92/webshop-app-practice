@@ -30,6 +30,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { ProductComponent } from './pages/product/product.component';
 import { cartReducer } from './store/cart.reducer';
 import { CartEffects } from './store/cart.effects';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CartEffects } from './store/cart.effects';
     ProductCardComponent,
     CartComponent,
     ProductComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
