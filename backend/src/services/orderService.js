@@ -49,7 +49,7 @@ function validateInput(input) {
   }
 
   if (!input.shippingDetails.countryId) {
-    throw new ValidationError('Country is required', 400);
+    throw new ValidationError('Country ID is required', 400);
   }
 
   if (!uuidRegex.test(input.cartId)) {

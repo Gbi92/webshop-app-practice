@@ -50,7 +50,7 @@ function validateParam(cartId, productId) {
     throw new ValidationError('Cart ID is not valid', 400);
   }
 
-  if (productId && !parseInt(productId, 10)) {
-    throw new ValidationError('Product ID should be a number', 400);
+  if (productId && !uuidRegex.test(productId)) {
+    throw new ValidationError('Product ID is not valid', 400);
   }
 }

@@ -4,7 +4,7 @@ import { productService } from "../productService";
 jest.mock("../../models/product.js");
 
 describe('ProductService', () => {
-  test('should throw validation error when productId is not a number', async () => {
+  test('should throw validation error when productId is not valid', async () => {
     expect.assertions(2);
 
     const productId = 'abc'
@@ -12,7 +12,7 @@ describe('ProductService', () => {
     try {
       await productService.getProductResult(productId);
     } catch (e) {
-      expect(e.message).toEqual('Product ID should be a number');
+      expect(e.message).toEqual('Product ID is not valid');
       expect(e.statusCode).toEqual(400);
     }
   });
@@ -20,7 +20,7 @@ describe('ProductService', () => {
   test('should throw validation error when product does not exist', async () => {
     expect.assertions(3);
 
-    const productId = 200;
+    const productId = 'cf3c6973-0f0a-49e7-a19f-918df07ffa2a';
 
     productModel.selectProduct.mockResolvedValue([]);
 
@@ -34,10 +34,10 @@ describe('ProductService', () => {
   });
 
   test('should return product for provided productId', async () => {
-    const productId = 2;
+    const productId = 'cf3c6973-0f0a-49e7-a19f-918df07ffa2a';
 
     const response = [{
-      id: 2,
+      id: 'cf3c6973-0f0a-49e7-a19f-918df07ffa2a',
       name: "Lorem Ipsum",
       price: 21,
       image_path: "lorem-ipsum.jpg",

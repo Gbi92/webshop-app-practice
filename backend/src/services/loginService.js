@@ -38,6 +38,7 @@ export const loginService = {
         isVerified: userData.is_verified,
       },
       config.tokenSecret,
+      { expiresIn: '2h' }
     );
   }
 };

@@ -7,7 +7,7 @@ jest.mock("../../models/product.js");
 
 describe('GET /products/:productId endpoint', () => {
   it('should return an error message when there is no product with provided ID', (done) => {
-    const productId = 200;
+    const productId = 'cf3c6973-0f0a-49e7-a19f-918df07ffa2a';
 
     productModel.selectProduct.mockResolvedValue([]);
 
@@ -24,10 +24,10 @@ describe('GET /products/:productId endpoint', () => {
   });
 
   it('should return the product details for the provided ID', (done) => {
-    const productId = 2;
+    const productId = 'cf3c6973-0f0a-49e7-a19f-918df07ffa2a';
 
     const response = [{
-      id: 2,
+      id: 'cf3c6973-0f0a-49e7-a19f-918df07ffa2a',
       name: "Lorem Ipsum",
       price: 21,
       image_path: "lorem-ipsum.jpg",

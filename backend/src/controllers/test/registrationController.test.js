@@ -66,14 +66,9 @@ describe('POST /register endpoint', () => {
     }
 
     const insertedResponse = {
-      results: [
-        {
-          id: 1,
-          email: 'test@test.com',
-          isAdmin: 0,
-          isVerified: 0
-        }
-      ]
+      email: 'test@test.com',
+      is_admin: 0,
+      is_verified: 0
     }
 
     userModel.selectEmailData.mockResolvedValue(emailSelectResponse);
@@ -87,7 +82,7 @@ describe('POST /register endpoint', () => {
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body).toEqual(insertedResponse.results[0]);
+        expect(res.body).toEqual(insertedResponse);
         return done();
       });
   });

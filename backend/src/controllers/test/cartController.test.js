@@ -32,7 +32,7 @@ describe('POST /carts/:cartId/item endpoint', () => {
       .expect(400)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body).toEqual('Product ID should be a number');
+        expect(res.body).toEqual('Product ID is not valid');
         return done();
       });
   });
