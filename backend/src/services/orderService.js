@@ -12,7 +12,9 @@ export const orderService = {
     }
     const orderPrice = cartItems.reduce((acc, curr) => acc + curr.total_price, 0);
     const shippingInfo = await shippingModel.selectShippingData(orderInfo.shippingDetails.countryId);
-    // TODO: validate if there's result of shippingInfo 400
+    if (!shippingInfo) {
+      throw new ValidationError('Country ID cannot be found', 400);
+    }
 
     // TODO: transaction
     const addedOrder = await orderModel.insertOrderData(userId, orderInfo.shippingDetails, orderPrice, shippingInfo.cost);

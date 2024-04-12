@@ -7,6 +7,7 @@ import { loginController } from '../controllers/loginController';
 import { productController } from '../controllers/productController';
 import { cartController } from '../controllers/cartController';
 import { orderController } from '../controllers/orderController';
+import { authorization } from '../middlewares/authorization-handler';
 
 const router = express.Router();
 
@@ -25,6 +26,8 @@ router.delete('/carts/:cartId', cartController.emptyCart);
 router.post('/register', registrationController.registerUser);
 router.post('/login', loginController.login);
 
+router.use(authorization);
+// authenticated endpoints
 router.post('/order', orderController.addOrder);
 
 export default router;

@@ -14,7 +14,6 @@ export const userModel = {
 
   async insertUserData(name, email, password) {
     const userId = uuid();
-    // TODO: transaction?
     await db.query('INSERT INTO user (id, name, email, password) VALUES (?,?,?,?)', [userId, name, email, password]);
     const result = await db.query('SELECT email, is_admin, is_verified FROM user WHERE id = ?', [userId]);
     return result.results[0];

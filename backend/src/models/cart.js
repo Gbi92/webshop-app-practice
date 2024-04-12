@@ -25,7 +25,6 @@ export const cartModel = {
   },
 
   async insertItemData(cartId, productId) {
-    // TODO: transaction?
     await db.query('INSERT INTO cart (cart_id, product_id) VALUES (?,?);', [cartId, productId]);
     const result = await db.query(
       `SELECT p.*, c.created_at 
