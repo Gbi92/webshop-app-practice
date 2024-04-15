@@ -1,6 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIconsModule } from '@ng-icons/core';
 import {
@@ -17,6 +17,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AuthInterceptorService } from './services/auth-service/auth-interceptor.service';
+import { cartReducer } from './store/cart.reducer';
+import { CartEffects } from './store/cart.effects';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -28,8 +32,6 @@ import { ShopComponent } from './pages/shop/shop.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ProductComponent } from './pages/product/product.component';
-import { cartReducer } from './store/cart.reducer';
-import { CartEffects } from './store/cart.effects';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 @NgModule({
@@ -72,7 +74,13 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
       trace: false,
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
