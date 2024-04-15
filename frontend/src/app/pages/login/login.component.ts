@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../../services/api-service/api.service';
-import { Router } from '@angular/router';
+
+import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   errorMessage = '';
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -22,13 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.apiService.login(this.loginForm.value).subscribe({
-      next: (res) => {
-        localStorage.setItem('token', res.token);
-        this.router.navigate(['/']);
-      },
-      error: (err) => (this.errorMessage = err.error),
-    });
+    this.authService.login(this.loginForm.value);
   }
 
   onHandleError() {

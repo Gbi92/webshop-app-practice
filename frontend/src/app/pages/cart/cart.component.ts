@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { selectItemList, selectTotalSum } from '../../store/cart.selector';
 import { CartActions } from '../../store/cart.actions';
 import { Product } from '../../models/product';
-import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,14 +17,15 @@ export class CartComponent {
   cartId = '';
   storedCartId = localStorage.getItem('cartId');
   imgBasePath = `${environment.apiUrl}/images/`;
-  isNotLoggedIn = localStorage.getItem('token') === null;
+  isLoggedin: Observable<boolean>;
 
   totalSum$ = this.store.select(selectTotalSum);
   cartItemList$ = this.store.select(selectItemList);
 
-  constructor(private store: Store, private router: Router) {
+  constructor(private store: Store, public authService: AuthService) {
     this.cartId = this.storedCartId ? this.storedCartId : '';
     this.store.dispatch(CartActions.loadCartItems({ cartId: this.cartId }));
+    this.isLoggedin = authService.isLoggedIn();
   }
 
   addOneProduct(productId: string) {
@@ -46,13 +48,5 @@ export class CartComponent {
 
   emptyCart() {
     this.store.dispatch(CartActions.emptyCart({ cartId: this.cartId }));
-  }
-
-  orderItems() {
-    if (this.isNotLoggedIn) {
-      this.router.navigate(['/login']);
-    } else {
-      this.router.navigate(['/checkout']);
-    }
   }
 }

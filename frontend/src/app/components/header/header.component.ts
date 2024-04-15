@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { selectCartLength } from '../../store/cart.selector';
 import { CartActions } from '../../store/cart.actions';
-import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,23 +15,14 @@ export class HeaderComponent implements OnInit {
   cartCounter = this.store.select(selectCartLength);
   cartId = '';
   storedCartId = localStorage.getItem('cartId');
-  isNotLoggedIn = localStorage.getItem('token') === null;
+  isLoggedin: Observable<boolean>;
 
-  constructor(private store: Store, private router: Router) {}
+  constructor(private store: Store, public authService: AuthService) {
+    this.isLoggedin = authService.isLoggedIn();
+  }
 
   ngOnInit(): void {
     this.cartId = this.storedCartId ? this.storedCartId : '';
     this.store.dispatch(CartActions.loadCartItems({ cartId: this.cartId }));
-  }
-
-  logAction() {
-    if (this.isNotLoggedIn) {
-      this.isNotLoggedIn = false;
-      this.router.navigate(['/login']);
-    } else {
-      localStorage.removeItem('token');
-      this.isNotLoggedIn = true;
-      this.router.navigate(['/']);
-    }
   }
 }

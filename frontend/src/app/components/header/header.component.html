@@ -6,7 +6,8 @@
   </div>
   <div class="menu-container">
     <a class="app-button primary" routerLink="/shop">SHOP</a>
-    <div class="app-button secondary" (click)="logAction()">{{isNotLoggedIn ? 'LOGIN' : 'LOGOUT'}}</div>
+    <a class="app-button secondary" *ngIf="!(isLoggedin | async)" routerLink="/login">LOGIN</a>
+    <div class="app-button secondary" *ngIf="(isLoggedin | async)" (click)="authService.logout()">LOGOUT</div>
     <a class="cart-button" routerLink="/cart">
       CART [ <span class="cart-button-counter">{{cartCounter | async}}</span> ]
     </a>
