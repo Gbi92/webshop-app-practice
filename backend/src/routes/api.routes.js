@@ -7,6 +7,8 @@ import { loginController } from '../controllers/loginController';
 import { productController } from '../controllers/productController';
 import { cartController } from '../controllers/cartController';
 import { orderController } from '../controllers/orderController';
+import { countryController } from '../controllers/countryController';
+
 import { authorization } from '../middlewares/authorization-handler';
 
 const router = express.Router();
@@ -28,6 +30,7 @@ router.post('/login', loginController.login);
 
 router.use(authorization);
 // authenticated endpoints
+router.get('/country', countryController.getCountryData);
 router.post('/order', orderController.addOrder);
 
 export default router;
