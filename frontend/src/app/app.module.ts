@@ -33,6 +33,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { CartComponent } from './pages/cart/cart.component';
 import { ProductComponent } from './pages/product/product.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     CartComponent,
     ProductComponent,
     CheckoutComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
