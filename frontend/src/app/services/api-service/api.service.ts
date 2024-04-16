@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment.development';
 import { UserData } from '../../models/userData';
 import { Product } from '../../models/product';
 import { News } from '../../models/news';
+import { Country } from '../../models/country';
 import {
   LoginResponse,
   NewsResponse,
@@ -87,6 +88,10 @@ export class ApiService {
     return this.http.delete<{ deleteMsg: string }>(
       `${this.basePath}/carts/${cartId}`
     );
+  }
+
+  getCountryList(): Observable<Country[]> {
+    return this.http.get<Country[]>(`${this.basePath}/country`);
   }
 
   register(userData: UserData): Observable<RegistrationResponse> {

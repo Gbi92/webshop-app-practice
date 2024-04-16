@@ -1,0 +1,53 @@
+.checkout-page {
+  background-color: var(--main-bg-color);
+  color: var(--secondary-text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+
+  .checkout-container {
+    width: 60%;
+    padding: 30px;
+  }
+
+  .checkout-title {
+    padding: 20px 0;
+  }
+
+  .checkout-form {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+
+    &-input {
+      width: 100%;
+
+      input, select {
+        width: 100%;
+        height: 35px;
+        border: 1.5px solid var(--secondary-bg-color);
+        border-radius: 5px;
+        background-color: var(--secondary-text-color);
+        color: var(--secondary-bg-color);
+        padding: 0 10px;
+
+        &::placeholder {
+          color: var(--secondary-bg-color);
+        }
+      }
+
+      &.country, &.address, &.additional, &.phone {
+        grid-column: span 4;
+      }
+
+      &.firstname, &.lastname, &.city, &.zip {
+        grid-column: span 2;
+      }
+    }
+
+    &-button {
+      grid-column-start: 4;
+    }
+  }
+}

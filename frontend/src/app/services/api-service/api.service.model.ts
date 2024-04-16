@@ -1,5 +1,5 @@
 export interface NewsResponse {
-  id: number;
+  id: string;
   title: string;
   content: string;
   image_path: string;

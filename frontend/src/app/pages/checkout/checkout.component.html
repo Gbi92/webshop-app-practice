@@ -1,1 +1,76 @@
-<p>checkout works!</p>
+<div class="checkout-page">
+  <div class="checkout-container">
+    <div class="checkout-title">Shipping Info</div>
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" class="checkout-form">
+      <div class="checkout-form-input country">
+        <select formControlName="country">
+          <option value="" disabled>Country*</option>
+          <option *ngFor="let country of countryList" [ngValue]="country.id">
+            {{country.name}}
+          </option>
+        </select>
+      </div>
+      <div class="checkout-form-input firstname">
+        <input 
+          type="text"
+          name="firstname"
+          formControlName="firstname"
+          placeholder="First name (optional)" 
+        />
+      </div>
+      <div class="checkout-form-input lastname">
+        <input
+          type="text"
+          name="lastname"
+          formControlName="lastname"
+          placeholder="Last name*"
+          required
+        />
+      </div>
+      <div class="checkout-form-input address">
+        <input
+          type="text"
+          name="address"
+          formControlName="address"
+          placeholder="Address*"
+          required
+        />
+      </div>
+      <div class="checkout-form-input additional">
+        <input
+          type="text"
+          name="additional"
+          formControlName="additional"
+          placeholder="Apartment, suite, etc. (optional)"
+        />
+      </div>
+      <div class="checkout-form-input city">
+        <input
+          type="text"
+          name="city"
+          formControlName="city"
+          placeholder="City*"
+          required 
+        />
+      </div>
+      <div class="checkout-form-input zip">
+        <input
+          type="text"
+          name="zip"
+          formControlName="zip"
+          placeholder="ZIP code*"
+          required
+        />
+      </div>
+      <div class="checkout-form-input phone">
+        <input
+          type="tel"
+          name="phone"
+          formControlName="phone"
+          placeholder="Phone"
+        />
+      </div>
+      <button class="checkout-form-button app-button primary" type="submit">{{'Continue' | uppercase}}</button>
+    </form>
+  </div>
+</div>
