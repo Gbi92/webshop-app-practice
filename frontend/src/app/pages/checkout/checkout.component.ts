@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CheckoutFormComponent } from './checkout-form/checkout-form/checkout-form.component';
+import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
 
 @Component({
   selector: 'app-checkout',

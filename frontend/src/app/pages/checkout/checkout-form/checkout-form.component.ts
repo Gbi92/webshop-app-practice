@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Country } from '../../../../models/country';
-import { ApiService } from '../../../../services/api-service/api.service';
-import { Shipping } from '../../../../models/shipping';
+import { Country } from '../../../models/country';
+import { ApiService } from '../../../services/api-service/api.service';
+import { Shipping } from '../../../models/shipping';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

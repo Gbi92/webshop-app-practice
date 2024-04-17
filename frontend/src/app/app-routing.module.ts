@@ -11,9 +11,9 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthGuard } from './services/auth-service/auth-guard.service';
 import { LoginGuard } from './services/login-guard.service';
-import { OrderSummaryComponent } from './pages/checkout/order-summary/order-summary/order-summary.component';
-import { PaymentComponent } from './pages/checkout/payment/payment/payment.component';
-import { CheckoutFormComponent } from './pages/checkout/checkout-form/checkout-form/checkout-form.component';
+import { OrderSummaryComponent } from './pages/checkout/order-summary/order-summary.component';
+import { PaymentComponent } from './pages/checkout/payment/payment.component';
+import { CheckoutFormComponent } from './pages/checkout/checkout-form/checkout-form.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
