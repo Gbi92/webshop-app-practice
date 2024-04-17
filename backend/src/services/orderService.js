@@ -26,6 +26,15 @@ export const orderService = {
     await cartModel.deleteAllItems(orderInfo.cartId);
 
     return addedOrder;
+  },
+
+  async getOrder(orderId) {
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    if (!uuidRegex.test(orderId)) {
+      throw new ValidationError('Order ID is not valid', 400);
+    }
+    const data = await orderModel.selectOrderData(orderId);
+    return data;
   }
 };
 

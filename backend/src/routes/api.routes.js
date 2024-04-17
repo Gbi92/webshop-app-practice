@@ -31,6 +31,7 @@ router.post('/login', loginController.login);
 router.use(authorization);
 // authenticated endpoints
 router.get('/country', countryController.getCountryData);
+router.get('/order/:orderId', orderController.getOrder);
 router.post('/order', orderController.addOrder);
 
 export default router;
