@@ -5,4 +5,24 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+
+  &-navigation {
+    width: 55%;
+    padding: 20px;
+    display: flex;
+    gap: 5%;
+    font-size: 14px;
+
+    a {
+      color: var(--secondary-text-color);
+      text-decoration: none;
+
+      &.disable-link {
+        color: grey;
+        cursor: text;
+        pointer-events: none;
+        text-decoration: none;
+      }
+    }
+  }
 }

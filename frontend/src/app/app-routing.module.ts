@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'product/:productId', component: ProductComponent },
   {
     path: 'checkout',
-    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     component: CheckoutComponent,
     children: [
       { path: '', component: CheckoutFormComponent },
