@@ -17,3 +17,16 @@ export interface LoginResponse {
   status: string;
   token: string;
 }
+
+export interface OrderResponse {
+  id: string;
+  user_id: string;
+  status: string;
+  order_date: string;
+  zip_code: string;
+  city: string;
+  street: string;
+  country_id: string;
+  order_price: number;
+  shipping_price: number;
+}

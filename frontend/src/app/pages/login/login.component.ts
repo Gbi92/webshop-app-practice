@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.authService.login(this.loginForm.value);
+    // TODO: error handling
   }
 
   onHandleError() {

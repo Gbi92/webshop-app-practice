@@ -4,15 +4,17 @@ import { Observable, map } from 'rxjs';
 
 import { environment } from '../../../environments/environment.development';
 
+import {
+  LoginResponse,
+  NewsResponse,
+  OrderResponse,
+  RegistrationResponse,
+} from './api.service.model';
 import { UserData } from '../../models/userData';
 import { Product } from '../../models/product';
 import { News } from '../../models/news';
 import { Country } from '../../models/country';
-import {
-  LoginResponse,
-  NewsResponse,
-  RegistrationResponse,
-} from './api.service.model';
+import { Shipping } from '../../models/shipping';
 
 @Injectable({
   providedIn: 'root',
@@ -92,6 +94,16 @@ export class ApiService {
 
   getCountryList(): Observable<Country[]> {
     return this.http.get<Country[]>(`${this.basePath}/country`);
+  }
+
+  addOrder(
+    cartId: string,
+    shippingDetails: Shipping
+  ): Observable<OrderResponse> {
+    return this.http.post<OrderResponse>(`${this.basePath}/order`, {
+      shippingDetails,
+      cartId,
+    });
   }
 
   register(userData: UserData): Observable<RegistrationResponse> {
