@@ -34,6 +34,9 @@ import { CartComponent } from './pages/cart/cart.component';
 import { ProductComponent } from './pages/product/product.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { CheckoutFormComponent } from './pages/checkout/checkout-form/checkout-form/checkout-form.component';
+import { OrderSummaryComponent } from './pages/checkout/order-summary/order-summary/order-summary.component';
+import { PaymentComponent } from './pages/checkout/payment/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ProductComponent,
     CheckoutComponent,
     PageNotFoundComponent,
+    CheckoutFormComponent,
+    OrderSummaryComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
