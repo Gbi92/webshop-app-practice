@@ -5,6 +5,12 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
   &-input {
     width: 230px;
@@ -27,33 +33,6 @@
     }
   }
 
-  &-button {
-    background-color: var(--main-bg-color);
-    width: 200px;
-    color: var(--main-text-color);
-    font-family: 'Roboto Bold', Arial, sans-serif;
-    font-size: 16px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: none;
-    border-radius: 3px;
-    box-shadow: 0px 5px rgba(214, 148, 130, 0.6);
-
-    &:disabled {
-      color: rgba(76, 87, 113, 0.3);
-      background-color: rgba(76, 87, 113, 0.3);
-      box-shadow: 0px 5px rgba(76, 87, 113, 0.2);
-
-      &:hover {
-        cursor: not-allowed;
-      }
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
   &-terms-container {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -63,18 +42,5 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  &-error {
-    margin-top: 10px;
-
-    &-message {
-      color: #ff1800;
-      background-color: rgb(255, 230, 216, 0.3);
-      font-size: 14px;
-      padding: 5px;
-      border-radius: 3px;
-      text-align: center;
-    }
   }
 }

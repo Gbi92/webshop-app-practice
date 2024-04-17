@@ -8,6 +8,11 @@
           {{country.name}}
         </option>
       </select>
+      <span 
+        *ngIf="checkoutForm.get('country')?.dirty || checkoutForm.get('country')?.touched"
+        class="error-msg">
+        <span *ngIf="checkoutForm.get('country')?.hasError('required')">This field is required</span>
+      </span>
     </div>
     <div class="checkout-form-input firstname">
       <input 
@@ -25,6 +30,11 @@
         placeholder="Last name*"
         required
       />
+      <span 
+        *ngIf="checkoutForm.get('lastname')?.dirty || checkoutForm.get('lastname')?.touched"
+        class="error-msg">
+        <span *ngIf="checkoutForm.get('lastname')?.hasError('required')">This field is required</span>
+      </span>
     </div>
     <div class="checkout-form-input address">
       <input
@@ -34,6 +44,11 @@
         placeholder="Address*"
         required
       />
+      <span 
+        *ngIf="checkoutForm.get('address')?.dirty || checkoutForm.get('address')?.touched"
+        class="error-msg">
+        <span *ngIf="checkoutForm.get('address')?.hasError('required')">This field is required</span>
+      </span>
     </div>
     <div class="checkout-form-input additional">
       <input
@@ -51,6 +66,11 @@
         placeholder="City*"
         required 
       />
+      <span 
+        *ngIf="checkoutForm.get('city')?.dirty || checkoutForm.get('city')?.touched"
+        class="error-msg">
+        <span *ngIf="checkoutForm.get('city')?.hasError('required')">This field is required</span>
+      </span>
     </div>
     <div class="checkout-form-input zip">
       <input
@@ -60,14 +80,25 @@
         placeholder="ZIP code*"
         required
       />
+      <span 
+        *ngIf="checkoutForm.get('zip')?.dirty || checkoutForm.get('zip')?.touched"
+        class="error-msg">
+        <span *ngIf="checkoutForm.get('zip')?.hasError('required')">This field is required</span>
+      </span>
     </div>
     <div class="checkout-form-input phone">
       <input
         type="tel"
         name="phone"
         formControlName="phone"
-        placeholder="Phone"
+        placeholder="Phone*"
+        required
       />
+      <span 
+        *ngIf="checkoutForm.get('phone')?.dirty || checkoutForm.get('phone')?.touched"
+        class="error-msg">
+        <span *ngIf="checkoutForm.get('phone')?.hasError('required')">This field is required</span>
+      </span>
     </div>
     <button class="checkout-form-button app-button primary" type="submit">{{'Continue' | uppercase}}</button>
   </form>

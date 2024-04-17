@@ -1,8 +1,10 @@
 export interface Shipping {
+  lastName: string;
+  firstName?: string;
   zip: string;
   city: string;
   street: string;
   countryId: string;
-  additional?: string;
-  phoneNumber?: string;
+  additionalAddress?: string;
+  phoneNumber: string;
 }

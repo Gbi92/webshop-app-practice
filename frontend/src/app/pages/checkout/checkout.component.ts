@@ -22,6 +22,7 @@ export class CheckoutComponent implements OnInit {
     if (component instanceof CheckoutFormComponent) {
       this.disableSummary = true;
       this.disablePayment = true;
+      // TODO: orderId store?
       component.orderAdded.subscribe((orderId) => {
         this.orderId = orderId;
       });

@@ -40,7 +40,7 @@
     
     &-input {
       width: 230px;
-      margin: 5px;
+      margin: 10px 0;
       display: flex;
       justify-content: space-evenly;
       align-items: center;
@@ -63,34 +63,8 @@
       padding: 5px;
     }
   
-    &-button {
-      background-color: var(--main-bg-color);
-      width: 200px;
-      color: var(--main-text-color);
-      font-family: 'Roboto Bold', Arial, sans-serif;
-      font-size: 16px;
-      padding: 10px 0;
+    &-btn {
       margin: 15px 0;
-      border: none;
-      border-radius: 3px;
-      box-shadow: 0px 5px rgba(214, 148, 130, 0.6);
-  
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  
-    &-error {
-      margin-top: 10px;
-  
-      &-message {
-        color: #ff1800;
-        background-color: rgb(255, 230, 216, 0.3);
-        font-size: 14px;
-        padding: 5px;
-        border-radius: 3px;
-        text-align: center;
-      }
     }
   }
 

@@ -1,6 +1,6 @@
 <div>
   <form class="reg-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-    <div formGroupName="userData">
+    <div class="reg-form-wrapper" formGroupName="userData">
       <div class="reg-form-input name">
         <ng-icon name="matPerson"></ng-icon>
         <input
@@ -11,6 +11,11 @@
           required
         />
       </div>
+      <span 
+        *ngIf="signupForm.get('userData.username')?.invalid && (signupForm.get('userData.username')?.touched || signupForm.get('userData.username')?.dirty)"
+        class="error-msg">
+        <span *ngIf="signupForm.get('userData.username')?.hasError('required')">Name is required</span>
+      </span>
       <div class="reg-form-input email">
         <ng-icon name="matEmail"></ng-icon>
         <input
@@ -21,6 +26,12 @@
           required
         />
       </div>
+      <span 
+        *ngIf="signupForm.get('userData.email')?.invalid && (signupForm.get('userData.email')?.touched || signupForm.get('userData.email')?.dirty)"
+        class="error-msg">
+        <span *ngIf="signupForm.get('userData.email')?.hasError('required')">Email is required</span>
+        <span *ngIf="signupForm.get('userData.email')?.hasError('email')">Please provide a valid email</span>
+      </span>
       <div class="reg-form-input password">
         <ng-icon name="matLock"></ng-icon>
         <input 
@@ -31,6 +42,12 @@
           required
         />
       </div>
+      <span 
+        *ngIf="signupForm.get('userData.password')?.invalid && (signupForm.get('userData.password')?.touched || signupForm.get('userData.password')?.dirty)"
+        class="error-msg">
+        <span *ngIf="signupForm.get('userData.password')?.hasError('required')">Password is required</span>
+        <span *ngIf="signupForm.get('userData.password')?.hasError('minlength')">Password must be at least 8 characters</span>
+      </span>
     </div>
     <div class="reg-form-terms-container">
       <input 
@@ -42,25 +59,8 @@
       />
       <label for="terms">I agree to terms&amp;conditions*</label>
     </div>
-    <button class="reg-form-button" type="submit" [disabled]="signupForm.invalid">Register</button>
+    <button class="submit-button" type="submit" [disabled]="signupForm.invalid">Register</button>
   </form>
-  <div *ngIf="signupForm.get('userData.username')?.invalid 
-          && (signupForm.get('userData.username')?.touched || signupForm.get('userData.username')?.dirty)"
-        class="reg-form-error">
-    <p class="reg-form-error-message" *ngIf="signupForm.get('userData.username')?.hasError('required')">Name is required</p>
-  </div>
-  <div *ngIf="signupForm.get('userData.email')?.invalid 
-          && (signupForm.get('userData.email')?.touched || signupForm.get('userData.email')?.dirty)"
-        class="reg-form-error">
-    <p class="reg-form-error-message" *ngIf="signupForm.get('userData.email')?.hasError('required')">Email is required</p>
-    <p class="reg-form-error-message" *ngIf="signupForm.get('userData.email')?.hasError('email')">Please provide a valid email</p>
-  </div>
-  <div *ngIf="signupForm.get('userData.password')?.invalid 
-          && (signupForm.get('userData.password')?.touched)"
-        class="reg-form-error">
-    <p class="reg-form-error-message" *ngIf="signupForm.get('userData.password')?.hasError('required')">Password is required</p>
-    <p class="reg-form-error-message" *ngIf="signupForm.get('userData.password')?.hasError('minlength')">Password must be at least 8 characters</p>
-  </div>
   <app-alert 
     *ngIf="errorMessage"
     [message]="errorMessage"

@@ -8,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-checkout-form',
   templateUrl: './checkout-form.component.html',
-  host: { class: 'myClass' },
   styleUrl: './checkout-form.component.scss',
 })
 export class CheckoutFormComponent implements OnInit {
@@ -36,7 +35,7 @@ export class CheckoutFormComponent implements OnInit {
       additional: new FormControl(''),
       city: new FormControl('', Validators.required),
       zip: new FormControl('', Validators.required),
-      phone: new FormControl(''),
+      phone: new FormControl('', Validators.required),
     });
     this.apiService
       .getCountryList()
@@ -45,15 +44,16 @@ export class CheckoutFormComponent implements OnInit {
 
   onSubmit() {
     const formValue = this.checkoutForm.value;
-    console.log(formValue);
-
     const shippingDetails: Shipping = {
+      lastName: formValue.lastname,
+      firstName: formValue.firstName,
       zip: formValue.zip,
       city: formValue.city,
       street: formValue.address,
       countryId: formValue.country,
+      phoneNumber: formValue.phone,
+      additionalAddress: formValue.additional,
     };
-    console.log(shippingDetails);
 
     this.apiService.addOrder(this.cartId, shippingDetails).subscribe({
       next: (orderDetails) => {
@@ -63,6 +63,7 @@ export class CheckoutFormComponent implements OnInit {
           relativeTo: this.route,
         });
       },
+      // TODO
       error: (err) => console.log(err),
     });
   }

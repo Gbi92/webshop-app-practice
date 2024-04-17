@@ -1,14 +1,11 @@
 .checkout-page {
   background-color: var(--main-bg-color);
   color: var(--secondary-text-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   min-height: 100vh;
 
   &-navigation {
-    width: 55%;
-    padding: 20px;
+    max-width: 400px;
+    padding: 20px 30px;
     display: flex;
     gap: 5%;
     font-size: 14px;

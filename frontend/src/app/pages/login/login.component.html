@@ -13,6 +13,12 @@
             required
           />
         </div>
+        <span 
+          *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)"
+          class="error-msg">
+          <span *ngIf="loginForm.get('email')?.hasError('required')">Email is required</span>
+          <span *ngIf="loginForm.get('email')?.hasError('email')">Please provide a valid email</span>
+        </span>
         <div class="login-form-input password">
           <ng-icon name="matLock"></ng-icon>
           <input 
@@ -23,18 +29,13 @@
             required
           />
         </div>
-        <button class="login-form-button" type="submit">Sign in</button>
+        <span 
+          *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)"
+          class="error-msg">
+          <span *ngIf="loginForm.get('password')?.hasError('required')">Password is required</span>
+        </span>
+        <button class="login-form-btn submit-button" type="submit">Sign in</button>
       </form>
-      <div *ngIf="loginForm.get('email')?.invalid 
-              && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)"
-            class="login-form-error">
-        <p class="login-form-error-message" *ngIf="loginForm.get('email')?.hasError('required')">Email is required</p>
-        <p class="login-form-error-message" *ngIf="loginForm.get('email')?.hasError('email')">Please provide a valid email</p>
-      </div>
-      <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched)"
-            class="login-form-error">
-        <p class="login-form-error-message" *ngIf="loginForm.get('password')?.hasError('required')">Password is required</p>
-      </div>
       <app-alert 
         *ngIf="errorMessage"
         [message]="errorMessage"
