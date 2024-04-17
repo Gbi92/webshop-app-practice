@@ -52,6 +52,14 @@ function validateInput(input) {
     throw new ValidationError('Country ID is required', 400);
   }
 
+  if (!input.shippingDetails.lastName) {
+    throw new ValidationError('Last name is required', 400);
+  }
+
+  if (!input.shippingDetails.phoneNumber) {
+    throw new ValidationError('Phone number is required', 400);
+  }
+
   if (!uuidRegex.test(input.cartId)) {
     throw new ValidationError('Cart ID is not valid', 400);
   }
