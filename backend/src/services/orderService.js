@@ -23,7 +23,8 @@ export const orderService = {
       await orderModel.insertOrderItemData(addedOrder.id, cartItems[i]);
     }
 
-    await cartModel.deleteAllItems(orderInfo.cartId);
+    // TODO: not here
+    // await cartModel.deleteAllItems(orderInfo.cartId);
 
     return addedOrder;
   },
