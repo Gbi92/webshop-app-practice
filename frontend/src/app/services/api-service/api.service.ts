@@ -7,6 +7,8 @@ import { environment } from '../../../environments/environment.development';
 import {
   LoginResponse,
   NewsResponse,
+  OrderDetails,
+  OrderItem,
   OrderResponse,
   RegistrationResponse,
 } from './api.service.model';
@@ -15,12 +17,41 @@ import { Product } from '../../models/product';
 import { News } from '../../models/news';
 import { Country } from '../../models/country';
 import { Shipping } from '../../models/shipping';
+import { OrderInfo } from '../../models/order';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   private basePath = `${environment.apiUrl}/api`;
+
+  private collectOrderDetails(
+    orderDetails: OrderDetails,
+    orderItems: OrderItem[]
+  ) {
+    return {
+      orderDetails: {
+        orderId: orderDetails.id,
+        orderPrice: orderDetails.order_price,
+        shippingPrice: orderDetails.shipping_price,
+        country: orderDetails.country,
+        lastName: orderDetails.last_name,
+        zip: orderDetails.zip_code,
+        city: orderDetails.city,
+        street: orderDetails.street,
+        phoneNumber: orderDetails.phone_number,
+        countryId: orderDetails.country_id,
+        additionalAddress: orderDetails.additional_address ?? '',
+        firstName: orderDetails.first_name ?? '',
+      },
+      orderItems: orderItems.map((orderItem) => ({
+        quantity: orderItem.quantity,
+        name: orderItem.name,
+        price: orderItem.price,
+        imagePath: orderItem.image_path,
+      })),
+    };
+  }
 
   constructor(private http: HttpClient) {}
 
@@ -99,11 +130,21 @@ export class ApiService {
   addOrder(
     cartId: string,
     shippingDetails: Shipping
-  ): Observable<OrderResponse> {
-    return this.http.post<OrderResponse>(`${this.basePath}/order`, {
+  ): Observable<OrderDetails> {
+    return this.http.post<OrderDetails>(`${this.basePath}/order`, {
       shippingDetails,
       cartId,
     });
+  }
+
+  getOrderDetails(orderId: string): Observable<OrderInfo> {
+    return this.http
+      .get<OrderResponse>(`${this.basePath}/order/${orderId}`)
+      .pipe(
+        map((orderInfo) =>
+          this.collectOrderDetails(orderInfo.orderDetails, orderInfo.orderItems)
+        )
+      );
   }
 
   register(userData: UserData): Observable<RegistrationResponse> {

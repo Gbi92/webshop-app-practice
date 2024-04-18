@@ -18,15 +18,32 @@ export interface LoginResponse {
   token: string;
 }
 
-export interface OrderResponse {
+export interface OrderDetails {
   id: string;
   user_id: string;
   status: string;
   order_date: string;
+  last_name: string;
+  first_name: string;
   zip_code: string;
   city: string;
   street: string;
   country_id: string;
+  additional_address: string;
+  phone_number: string;
   order_price: number;
   shipping_price: number;
+  country: string;
+}
+
+export interface OrderItem {
+  quantity: number;
+  name: string;
+  price: number;
+  image_path: string;
+}
+
+export interface OrderResponse {
+  orderDetails: OrderDetails;
+  orderItems: OrderItem[];
 }
