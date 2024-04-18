@@ -45,11 +45,6 @@
         <div>Total</div>
         <div>{{totalSum$ | async | currency}}</div>
       </div>
-      <!-- TODO: to order-summary page -->
-      <div class="discount-wrapper flex-wrapper between">
-        <div>Discount code or gift card</div>
-        <input type="text">
-      </div>
       <a class="app-button primary" *ngIf="!(isLoggedin | async)" routerLink="/login">LOGIN TO ORDER</a>
       <a class="app-button primary" *ngIf="(isLoggedin | async)" routerLink="/checkout">ORDER</a>
     </div>

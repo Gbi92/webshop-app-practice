@@ -1,4 +1,62 @@
 <div class="order-summary-wrapper">
   <div class="order-summary-title">Your Order</div>
-  <div>{{currentOrder.orderDetails.city}}</div>
+  <div class="order-summary-content">
+    <div class="order-items-wrapper">
+      <ng-container *ngFor="let orderItem of currentOrder.orderItems">
+        <div class="order-item">
+          <div class="flex-wrapper center between">
+            <div class="relative-to">
+              <div class="img-container">
+                <img class="order-item-img" src="{{imgBasePath}}{{orderItem.imagePath}}" alt="{{orderItem.imagePath}}">
+              </div>
+              <div class="order-item-quantity-container">
+                <div class="order-item-quantity">{{orderItem.quantity}}</div>
+              </div>
+            </div>
+            <div class="order-item-name">{{orderItem.name | titlecase}}</div>
+          </div>
+          <div>{{orderItem.price * orderItem.quantity | currency}}</div>
+        </div>
+      </ng-container>
+    </div>
+    <div>Ship to</div>
+    <div class="shipping-details-wrapper flex-wrapper between center">
+      <div class="full-address">
+        <span>{{currentOrder.orderDetails.street}}, </span>
+        <span *ngIf="currentOrder.orderDetails.additionalAddress">{{currentOrder.orderDetails.additionalAddress}}, </span>
+        <span>{{currentOrder.orderDetails.city}} </span>
+        <span>{{currentOrder.orderDetails.zip}}, </span>
+        <span>{{currentOrder.orderDetails.country}}</span>
+      </div>
+      <!-- TODO: link-to-be -->
+      <div>Change</div>
+    </div>
+  </div>
+  <div class="order-price-wrapper">
+    <div class="order-price">
+      <div class="order-price-item sub-total">
+        <div>Subtotal</div>
+        <div>{{currentOrder.orderDetails.orderPrice | currency}}</div>
+      </div>
+      <div class="order-price-item shipping-price">
+        <div>Shipping</div>
+        <div>{{currentOrder.orderDetails.shippingPrice | currency}}</div>
+      </div>
+      <div class="order-price-item total-sum">
+        <div>Total</div>
+        <!-- TODO: from backend > from db -->
+        <div>{{currentOrder.orderDetails.orderPrice + currentOrder.orderDetails.shippingPrice | currency}}</div>
+      </div>
+      <div class="discount-wrapper flex-wrapper">
+        <input
+          type="text"
+          placeholder="Discount code or gift card"
+        />
+        <button class="apply-btn app-button" type="submit">Apply</button>
+      </div>
+    </div>
+  </div>
+  <div class="pay-btn">
+    <div class="app-button primary">P A Y</div>
+  </div>
 </div>

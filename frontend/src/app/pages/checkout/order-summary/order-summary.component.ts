@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../../environments/environment.development';
+
 import { ApiService } from '../../../services/api-service/api.service';
 import { OrderInfo } from '../../../models/order';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-order-summary',
@@ -9,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './order-summary.component.scss',
 })
 export class OrderSummaryComponent implements OnInit {
+  imgBasePath = `${environment.apiUrl}/images/`;
   orderId = '';
   currentOrder!: OrderInfo;
 

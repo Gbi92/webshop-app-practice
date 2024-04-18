@@ -161,16 +161,5 @@
     .total-sum {
       font-family: 'Roboto Bold', Arial, sans-serif;
     }
-
-    .discount-wrapper {
-      input {
-        width: 100px;
-        border: none;
-        border-bottom: 1px solid var(--secondary-text-color);
-        background-color: var(--secondary-bg-color);
-        color: var(--secondary-text-color);
-        padding: 5px;
-      }
-    }
   }
 }
