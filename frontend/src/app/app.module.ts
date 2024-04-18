@@ -37,6 +37,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { CheckoutFormComponent } from './pages/checkout/checkout-form/checkout-form.component';
 import { OrderSummaryComponent } from './pages/checkout/order-summary/order-summary.component';
 import { PaymentComponent } from './pages/checkout/payment/payment.component';
+import { TrimDirective } from './directives/trim.directive';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { PaymentComponent } from './pages/checkout/payment/payment.component';
     CheckoutFormComponent,
     OrderSummaryComponent,
     PaymentComponent,
+    TrimDirective,
   ],
   imports: [
     BrowserModule,
