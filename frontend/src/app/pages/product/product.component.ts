@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 
 import { ApiService } from '../../services/api-service/api.service';
 import { Product } from '../../models/product';
-import { CartActions } from '../../store/cart.actions';
+import { CartActions } from '../../store/cart/cart.actions';
 
 @Component({
   selector: 'app-product',

@@ -14,8 +14,8 @@ import {
 } from 'rxjs';
 
 import { CartActions } from './cart.actions';
-import { ApiService } from '../services/api-service/api.service';
-import { Product, emptyProduct } from '../models/product';
+import { ApiService } from '../../services/api-service/api.service';
+import { Product, emptyProduct } from '../../models/product';
 import { CartProduct } from './cart.model';
 
 @Injectable()

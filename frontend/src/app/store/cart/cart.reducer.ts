@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 
 import { Cart, LoadingState } from './cart.model';
 import { CartActions } from './cart.actions';
-import { Product } from '../models/product';
+import { Product } from '../../models/product';
 
 export const initialState: Cart = {
   itemList: [],

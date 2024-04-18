@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { selectCartLength } from '../../store/cart.selector';
-import { CartActions } from '../../store/cart.actions';
+import { selectCartLength } from '../../store/cart/cart.selector';
+import { CartActions } from '../../store/cart/cart.actions';
 import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({

@@ -18,8 +18,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptorService } from './services/auth-service/auth-interceptor.service';
-import { cartReducer } from './store/cart.reducer';
-import { CartEffects } from './store/cart.effects';
+import { cartReducer } from './store/cart/cart.reducer';
+import { CartEffects } from './store/cart/cart.effects';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';

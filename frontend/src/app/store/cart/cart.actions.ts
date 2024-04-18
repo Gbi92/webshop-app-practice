@@ -1,6 +1,6 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
-import { Product } from '../models/product';
+import { Product } from '../../models/product';
 import { CartProduct } from './cart.model';
 
 export const CartActions = createActionGroup({

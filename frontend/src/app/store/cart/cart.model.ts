@@ -1,4 +1,4 @@
-import { Product } from '../models/product';
+import { Product } from '../../models/product';
 
 export enum LoadingState {
   INIT = 'INIT',

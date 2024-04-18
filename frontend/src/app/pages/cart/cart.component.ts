@@ -3,8 +3,8 @@ import { environment } from '../../../environments/environment.development';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { selectItemList, selectTotalSum } from '../../store/cart.selector';
-import { CartActions } from '../../store/cart.actions';
+import { selectItemList, selectTotalSum } from '../../store/cart/cart.selector';
+import { CartActions } from '../../store/cart/cart.actions';
 import { Product } from '../../models/product';
 import { AuthService } from '../../services/auth-service/auth.service';
 
