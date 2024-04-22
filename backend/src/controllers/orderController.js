@@ -1,6 +1,6 @@
 import logger from "../logger";
 import { orderService } from "../services/orderService";
-import { ValidationError } from "../validationError";
+import { ValidationError } from "../errors/validationError";
 
 export const orderController = {
   async addOrder(req, res) {

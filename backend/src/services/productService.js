@@ -1,5 +1,5 @@
 import { productModel } from "../models/product";
-import { ValidationError } from "../validationError";
+import { ValidationError } from "../errors/validationError";
 
 export const productService = {
   async getAllProductResult() {

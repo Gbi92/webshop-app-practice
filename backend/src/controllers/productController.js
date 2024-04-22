@@ -1,6 +1,6 @@
 import logger from '../logger';
 import { productService } from '../services/productService';
-import { ValidationError } from '../validationError';
+import { ValidationError } from "../errors/validationError";
 
 export const productController = {
   async getAllProductData(req, res) {

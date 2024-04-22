@@ -1,5 +1,5 @@
 import { cartModel } from "../models/cart";
-import { ValidationError } from "../validationError";
+import { ValidationError } from "../errors/validationError";
 
 export const cartService = {
   async getCartResult(cartId) {

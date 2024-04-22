@@ -1,7 +1,7 @@
 import { cartModel } from "../models/cart";
 import { orderModel } from "../models/order";
 import { shippingModel } from "../models/shipping";
-import { ValidationError } from "../validationError";
+import { ValidationError } from "../errors/validationError";
 
 const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -18,12 +18,7 @@ export const orderService = {
       throw new ValidationError('Country ID cannot be found', 400);
     }
 
-    // TODO: transaction
-    const addedOrder = await orderModel.insertOrderData(userId, orderInfo.shippingDetails, orderPrice, shippingInfo.cost);
-
-    for (let i = 0; i < cartItems.length; i++) {
-      await orderModel.insertOrderItemData(addedOrder.id, cartItems[i]);
-    }
+    const addedOrder = await orderModel.saveOrder(userId, orderInfo.shippingDetails, orderPrice, shippingInfo.cost, cartItems);
 
     return addedOrder;
   },

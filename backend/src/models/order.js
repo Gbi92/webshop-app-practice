@@ -1,18 +1,31 @@
 import { db } from "../data/connection";
 import { v4 as uuid } from 'uuid';
+import { DatabaseError } from "../errors/databaseError";
 
 export const orderModel = {
-  // TODO: transaction
-  // async saveOrder() {
+  async saveOrder(userId, shippingDetails, orderPrice, shippingPrice, cartItems) {
+    const connection = await db.connection();
+    try {
+      await connection.query('START TRANSACTION');
     
-  //   this.insertOrderData();
+      const addedOrder = await this.insertOrderData(connection, userId, shippingDetails, orderPrice, shippingPrice);
 
-  //   for (let i = 0; i < cartItems.length; i++) {
-  //     await this.insertOrderItemData(addedOrder.id, cartItems[i]);
-  //   }
-  // },
+      for (let i = 0; i < cartItems.length; i++) {
+        await this.insertOrderItemData(connection, addedOrder.id, cartItems[i]);
+      }
 
-  async insertOrderData(userId, shippingDetails, orderPrice, shippingPrice) {
+      await connection.query('COMMIT');
+
+      return addedOrder;
+    } catch (error) {
+      await connection.query('ROLLBACK');
+      throw new DatabaseError('Order cannot be created');
+    } finally {
+      await connection.release();
+    }
+  },
+
+  async insertOrderData(connection, userId, shippingDetails, orderPrice, shippingPrice) {
     const { zip, city, street, countryId, lastName, phoneNumber, firstName, additionalAddress} = shippingDetails;
     const orderId = uuid();
     const SQLinsertQuery = `
@@ -22,15 +35,15 @@ export const orderModel = {
     `;
     const insertedValues = [orderId, userId, orderPrice, shippingPrice, zip, city, street, countryId, lastName, phoneNumber, firstName, additionalAddress];
 
-    await db.query(SQLinsertQuery, insertedValues);
+    await connection.query(SQLinsertQuery, insertedValues);
 
-    const insertedOrder = await db.query('SELECT * FROM `order` WHERE id=?;', [orderId]);
+    const insertedOrder = await connection.query('SELECT * FROM `order` WHERE id=?;', [orderId]);
 
     return insertedOrder.results[0];
   },
 
-  async insertOrderItemData(orderId, cartItem) {
-    const insertOrderItemResult = await db.query(
+  async insertOrderItemData(connection, orderId, cartItem) {
+    const insertOrderItemResult = await connection.query(
       'INSERT INTO orderItem (order_id, product_id, quantity) VALUES (?,?,?);',
       [orderId, cartItem.product_id, cartItem.quantity]
     );

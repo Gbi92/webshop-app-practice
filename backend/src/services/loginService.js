@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import config from '../config';
 import { userModel } from '../models/user';
-import { ValidationError } from '../validationError';
+import { ValidationError } from "../errors/validationError";
 
 export const loginService = {
   loginUser: async (email, password) => {

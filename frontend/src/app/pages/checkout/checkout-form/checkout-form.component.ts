@@ -55,6 +55,8 @@ export class CheckoutFormComponent implements OnInit {
       additionalAddress: formValue.additional,
     };
 
+    // TODO: fix optionals - save null
+
     this.apiService.addOrder(this.cartId, shippingDetails).subscribe({
       next: (orderDetails) => {
         this.orderId = orderDetails.id;

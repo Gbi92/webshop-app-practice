@@ -1,6 +1,6 @@
 import logger from "../logger";
 import { cartService } from "../services/cartService";
-import { ValidationError } from "../validationError";
+import { ValidationError } from "../errors/validationError";
 
 export const cartController = {
   async getCartData(req, res) {

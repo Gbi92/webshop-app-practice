@@ -1,6 +1,6 @@
 import { userModel } from '../models/user';
 import bcrypt from 'bcrypt';
-import { ValidationError } from '../validationError';
+import { ValidationError } from "../errors/validationError";
 
 export const registrationService = {
   async register(userData) {

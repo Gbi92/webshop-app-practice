@@ -62,8 +62,8 @@ CREATE TABLE IF NOT EXISTS `order` (
   `city` varchar(32) NOT NULL,
   `street` varchar(256) NOT NULL,
   `country_id` varchar(36) NOT NULL,
-  `order_price` int NOT NULL,
-  `shipping_price` int NOT NULL,
+  `order_price` decimal(10,2) NOT NULL,
+  `shipping_price` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`country_id`) REFERENCES `country`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `orderItem` (
 CREATE TABLE IF NOT EXISTS `shipping` (
   `id` varchar(36) NOT NULL DEFAULT (uuid()),
   `country_id` varchar(36) NOT NULL,
-  `cost` int NOT NULL,
+  `cost` decimal(10,2) NOT NULL,
   `duration_in_days` int NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`country_id`) REFERENCES `country`(`id`) ON DELETE CASCADE ON UPDATE CASCADE

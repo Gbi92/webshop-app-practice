@@ -1,6 +1,6 @@
 import logger from '../logger.js';
 import { loginService } from '../services/loginService.js';
-import { ValidationError } from '../validationError.js';
+import { ValidationError } from "../errors/validationError";
 
 export const loginController = {
   async login (req, res) {
