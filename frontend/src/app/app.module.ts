@@ -38,6 +38,7 @@ import { CheckoutFormComponent } from './pages/checkout/checkout-form/checkout-f
 import { OrderSummaryComponent } from './pages/checkout/order-summary/order-summary.component';
 import { PaymentComponent } from './pages/checkout/payment/payment.component';
 import { TrimDirective } from './directives/trim.directive';
+import { CheckoutSuccessComponent } from './pages/checkout/checkout-success/checkout-success.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { TrimDirective } from './directives/trim.directive';
     OrderSummaryComponent,
     PaymentComponent,
     TrimDirective,
+    CheckoutSuccessComponent,
   ],
   imports: [
     BrowserModule,

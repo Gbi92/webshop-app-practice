@@ -1,1 +1,20 @@
-<p>payment works!</p>
+<div class="payment-page-wrapper">
+  <div class="payment-page-title">Payment</div>
+  <div class="payment-container flex-wrapper between center">
+    <div>Total</div>
+    <div>{{currentOrder.orderDetails.orderPrice + currentOrder.orderDetails.shippingPrice | currency}}</div>
+    <div class="app-button primary" (click)="pay()">Pay now</div>
+  </div>
+  <div>Remember me</div>
+  <div class="save-info-container">
+    <input
+      class="save-info-checkbox"
+      type="checkbox" 
+      id="saveInfo" 
+      name="saveInfo"
+      [checked]="isChecked$ | async"
+      (change)="toggleChecked()"
+    />
+    <label for="saveInfo">Save my shipping information for next time</label>
+  </div>
+</div>

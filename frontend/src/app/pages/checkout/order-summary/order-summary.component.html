@@ -44,7 +44,6 @@
       </div>
       <div class="order-price-item total-sum">
         <div>Total</div>
-        <!-- TODO: from backend > from db -->
         <div>{{currentOrder.orderDetails.orderPrice + currentOrder.orderDetails.shippingPrice | currency}}</div>
       </div>
       <div class="discount-wrapper flex-wrapper">
@@ -55,7 +54,7 @@
         <button class="apply-btn app-button" type="submit">Apply</button>
       </div>
       <div class="pay-btn">
-        <div class="app-button primary">P A Y</div>
+        <div class="app-button primary" (click)="goToPayment()">Continue to Payment</div>
       </div>
     </div>
   </div>

@@ -1,0 +1,22 @@
+.payment-page-wrapper {
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 15px 0;
+
+  .payment-container, .save-info-container {
+    max-width: 400px;
+    background-color: var(--secondary-bg-color);
+    border: 2px solid var(--secondary-text-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 15px 0;
+  }
+
+  .save-info-checkbox {
+    margin: 0;
+  }
+
+  label {
+    margin-left: 10px;
+  }
+}

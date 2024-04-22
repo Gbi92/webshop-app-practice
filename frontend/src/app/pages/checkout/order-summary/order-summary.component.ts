@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 
 import { ApiService } from '../../../services/api-service/api.service';
@@ -15,7 +15,11 @@ export class OrderSummaryComponent implements OnInit {
   orderId = '';
   currentOrder!: OrderInfo;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -24,5 +28,11 @@ export class OrderSummaryComponent implements OnInit {
     this.apiService
       .getOrderDetails(this.orderId)
       .subscribe((order) => (this.currentOrder = order));
+  }
+
+  goToPayment() {
+    this.router.navigate([this.orderId, 'payment'], {
+      relativeTo: this.route.parent,
+    });
   }
 }

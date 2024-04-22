@@ -14,6 +14,7 @@ import { LoginGuard } from './services/login-guard.service';
 import { OrderSummaryComponent } from './pages/checkout/order-summary/order-summary.component';
 import { PaymentComponent } from './pages/checkout/payment/payment.component';
 import { CheckoutFormComponent } from './pages/checkout/checkout-form/checkout-form.component';
+import { CheckoutSuccessComponent } from './pages/checkout/checkout-success/checkout-success.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
       { path: '', component: CheckoutFormComponent },
       { path: ':orderId/summary', component: OrderSummaryComponent },
       { path: ':orderId/payment', component: PaymentComponent },
+      { path: ':orderId/success', component: CheckoutSuccessComponent },
     ],
   },
   { path: 'not-found', component: PageNotFoundComponent },

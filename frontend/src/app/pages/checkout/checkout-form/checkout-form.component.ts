@@ -46,7 +46,7 @@ export class CheckoutFormComponent implements OnInit {
     const formValue = this.checkoutForm.value;
     const shippingDetails: Shipping = {
       lastName: formValue.lastname,
-      firstName: formValue.firstName,
+      firstName: formValue.firstname,
       zip: formValue.zip,
       city: formValue.city,
       street: formValue.address,
@@ -54,9 +54,6 @@ export class CheckoutFormComponent implements OnInit {
       phoneNumber: formValue.phone,
       additionalAddress: formValue.additional,
     };
-
-    // TODO: fix optional inputs
-    console.log('shippingDetails ', shippingDetails);
 
     this.apiService.addOrder(this.cartId, shippingDetails).subscribe({
       next: (orderDetails) => {

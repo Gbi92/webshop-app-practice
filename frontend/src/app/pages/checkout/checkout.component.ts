@@ -19,19 +19,20 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {}
 
   onActivate(component: any) {
-    if (component instanceof CheckoutFormComponent) {
-      this.disableSummary = true;
-      this.disablePayment = true;
-      // TODO: orderId store?
-      component.orderAdded.subscribe((orderId) => {
-        this.orderId = orderId;
-      });
-    }
-    if (component instanceof OrderSummaryComponent) {
-      this.disableSummary = false;
-    }
-    if (component instanceof PaymentComponent) {
-      this.disablePayment = false;
-    }
+    // TODO: make this better
+    // if (component instanceof CheckoutFormComponent) {
+    //   this.disableSummary = true;
+    //   this.disablePayment = true;
+    //   // TODO: orderId store?
+    //   component.orderAdded.subscribe((orderId) => {
+    //     this.orderId = orderId;
+    //   });
+    // }
+    // if (component instanceof OrderSummaryComponent) {
+    //   this.disableSummary = false;
+    // }
+    // if (component instanceof PaymentComponent) {
+    //   this.disablePayment = false;
+    // }
   }
 }

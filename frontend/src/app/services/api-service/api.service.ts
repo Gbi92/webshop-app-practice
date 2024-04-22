@@ -147,6 +147,10 @@ export class ApiService {
       );
   }
 
+  updateOrderStatus(orderId: string) {
+    return this.http.patch(`${this.basePath}/order/${orderId}`, {});
+  }
+
   register(userData: UserData): Observable<RegistrationResponse> {
     return this.http.post<RegistrationResponse>(`${this.basePath}/register`, {
       name: userData.username,
