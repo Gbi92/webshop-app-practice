@@ -2,6 +2,16 @@ import { db } from "../data/connection";
 import { v4 as uuid } from 'uuid';
 
 export const orderModel = {
+  // TODO: transaction
+  // async saveOrder() {
+    
+  //   this.insertOrderData();
+
+  //   for (let i = 0; i < cartItems.length; i++) {
+  //     await this.insertOrderItemData(addedOrder.id, cartItems[i]);
+  //   }
+  // },
+
   async insertOrderData(userId, shippingDetails, orderPrice, shippingPrice) {
     const { zip, city, street, countryId, lastName, phoneNumber, firstName, additionalAddress} = shippingDetails;
     const orderId = uuid();
@@ -10,7 +20,7 @@ export const orderModel = {
         (id, user_id, order_price, shipping_price, zip_code, city, street, country_id, last_name, phone_number, first_name, additional_address)
         VALUES (?,?,?,?,?,?,?,?,?,?,?,?);
     `;
-    let insertedValues = [orderId, userId, orderPrice, shippingPrice, zip, city, street, countryId, lastName, phoneNumber, firstName, additionalAddress];
+    const insertedValues = [orderId, userId, orderPrice, shippingPrice, zip, city, street, countryId, lastName, phoneNumber, firstName, additionalAddress];
 
     await db.query(SQLinsertQuery, insertedValues);
 
@@ -28,7 +38,6 @@ export const orderModel = {
   },
 
   async selectOrderData(orderId) {
-    // TODO: ez igy jo?
     let orderData = {};
     const orderDetails = await db.query(
       `SELECT o.*, c.name AS country
@@ -47,5 +56,11 @@ export const orderModel = {
     orderData.orderDetails = orderDetails.results[0];
     orderData.orderItems = orderItem.results;
     return orderData;
+  },
+
+  async updatePendingOrder(orderId) {
+    await db.query('UPDATE `order` SET status="Paid", purchase_date=CURRENT_TIMESTAMP WHERE id=?', [orderId]);
+    const updatedOrder = await db.query('SELECT * FROM `order` WHERE id=?', [orderId]);
+    return updatedOrder.results[0];
   }
 }

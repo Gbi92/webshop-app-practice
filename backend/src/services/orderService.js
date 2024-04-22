@@ -3,6 +3,8 @@ import { orderModel } from "../models/order";
 import { shippingModel } from "../models/shipping";
 import { ValidationError } from "../validationError";
 
+const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
 export const orderService = {
   async addOrder(userId, orderInfo) {
     validateInput(orderInfo);
@@ -23,25 +25,30 @@ export const orderService = {
       await orderModel.insertOrderItemData(addedOrder.id, cartItems[i]);
     }
 
-    // TODO: not here
-    // await cartModel.deleteAllItems(orderInfo.cartId);
-
     return addedOrder;
   },
 
   async getOrder(orderId) {
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(orderId)) {
       throw new ValidationError('Order ID is not valid', 400);
     }
     const data = await orderModel.selectOrderData(orderId);
     return data;
+  },
+
+  async updateOrderStatus(orderId) {
+    if (!uuidRegex.test(orderId)) {
+      throw new ValidationError('Order ID is not valid', 400);
+    }
+    const updatedOrder = await orderModel.updatePendingOrder(orderId);
+    if (!updatedOrder) {
+      throw new ValidationError('Order ID cannot be found', 404);
+    }
+    return updatedOrder;
   }
 };
 
 function validateInput(input) {
-  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-
   if (Object.keys(input.shippingDetails).length === 0) {
     throw new ValidationError('Shipping details are required', 400);
   }

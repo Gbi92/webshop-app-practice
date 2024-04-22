@@ -29,5 +29,19 @@ export const orderController = {
         res.status(500).json('Internal server error');
       }
     }
+  },
+
+  async updateOrderStatus(req, res) {
+    try {
+      const updatedOrderData = await orderService.updateOrderStatus(req.params.orderId);
+      res.status(200).json(updatedOrderData);
+    } catch (error) {
+      logger.error(`Cannot update order status due to: ${error.message}`);
+      if (error instanceof ValidationError) {
+        res.status(error.statusCode).json(error.message);
+      } else {
+        res.status(500).json('Internal server error');
+      }
+    }
   }
 }
