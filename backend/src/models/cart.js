@@ -30,8 +30,10 @@ export const cartModel = {
       `SELECT p.*, c.created_at 
         FROM cart AS c
         INNER JOIN product AS p ON p.id=c.product_id
-        WHERE c.cart_id=?;`,
-      [cartId]
+        WHERE c.cart_id=? AND c.product_id=?
+        ORDER BY c.created_at DESC
+        LIMIT 1;`,
+      [cartId, productId]
     );
     return result.results[0];
   },
