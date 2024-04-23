@@ -12,31 +12,28 @@ import { CheckoutSuccessComponent } from './checkout-success/checkout-success.co
 })
 export class CheckoutComponent implements OnInit {
   orderId = '';
-  disableSummary = true;
-  disablePayment = true;
-  showNavigation = true;
+  active = '';
+  showPath = true;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   onActivate(component: any) {
-    // TODO: make this better
     if (component instanceof CheckoutFormComponent) {
-      this.disableSummary = true;
-      this.disablePayment = true;
+      this.active = 'form';
       component.orderAdded.subscribe((orderId) => {
         this.orderId = orderId;
       });
     }
     if (component instanceof OrderSummaryComponent) {
-      this.disableSummary = false;
+      this.active = 'summary';
     }
     if (component instanceof PaymentComponent) {
-      this.disablePayment = false;
+      this.active = 'payment';
     }
     if (component instanceof CheckoutSuccessComponent) {
-      this.showNavigation = false;
+      this.showPath = false;
     }
   }
 }

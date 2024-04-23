@@ -1,18 +1,10 @@
 <div class="checkout-page">
-  <div *ngIf="showNavigation" class="checkout-page-navigation">
-    <a routerLink="/checkout">Shipping Info</a>
+  <div *ngIf="showPath" class="checkout-page-path">
+    <div [ngClass]="{'active' : active === 'form'}">Shipping Info</div>
     <div>></div>
-    <a 
-      [routerLink]="disableSummary ? null : [orderId, 'summary']" 
-      [ngClass]="{'disable-link' : disableSummary}">
-      Summary
-    </a>
+    <div [ngClass]="{'active' : active === 'summary'}">Summary</div>
     <div>></div>
-    <a 
-      [routerLink]="disablePayment ? null : [orderId, 'payment']" 
-      [ngClass]="{'disable-link' : disablePayment}">
-      Payment
-    </a>
+    <div [ngClass]="{'active' : active === 'payment'}">Payment</div>
   </div>
   <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
