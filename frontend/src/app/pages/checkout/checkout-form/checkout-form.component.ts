@@ -29,10 +29,10 @@ export class CheckoutFormComponent implements OnInit {
   ngOnInit(): void {
     this.checkoutForm = new FormGroup({
       country: new FormControl('', Validators.required),
-      firstname: new FormControl(''),
+      firstname: new FormControl(null),
       lastname: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
-      additional: new FormControl(''),
+      additional: new FormControl(null),
       city: new FormControl('', Validators.required),
       zip: new FormControl('', Validators.required),
       phone: new FormControl('', Validators.required),
@@ -54,8 +54,6 @@ export class CheckoutFormComponent implements OnInit {
       phoneNumber: formValue.phone,
       additionalAddress: formValue.additional,
     };
-
-    // TODO: fix optionals - save null
 
     this.apiService.addOrder(this.cartId, shippingDetails).subscribe({
       next: (orderDetails) => {

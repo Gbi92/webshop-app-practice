@@ -1,6 +1,5 @@
 <div class="checkout-page">
-  <!-- TODO: don't show navigation when checkout success -->
-  <div class="checkout-page-navigation">
+  <div *ngIf="showNavigation" class="checkout-page-navigation">
     <a routerLink="/checkout">Shipping Info</a>
     <div>></div>
     <a 
