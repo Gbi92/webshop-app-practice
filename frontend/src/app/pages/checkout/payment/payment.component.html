@@ -17,4 +17,9 @@
     />
     <label for="saveInfo">Save my shipping information for next time</label>
   </div>
+  <app-alert 
+    *ngIf="errorMessage"
+    [message]="errorMessage"
+    (close)="onHandleError()"
+  ></app-alert>
 </div>

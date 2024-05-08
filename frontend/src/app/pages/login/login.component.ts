@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../services/auth-service/auth.service';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -22,8 +23,15 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.authService.login(this.loginForm.value);
-    // TODO: error handling
+    this.authService
+      .login(this.loginForm.value)
+      .pipe(
+        catchError((err) => {
+          this.errorMessage = err.error;
+          return of();
+        })
+      )
+      .subscribe();
   }
 
   onHandleError() {

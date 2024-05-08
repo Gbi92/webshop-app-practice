@@ -15,6 +15,7 @@ export class PaymentComponent implements OnInit {
   isChecked$ = new BehaviorSubject(false);
   orderId = '';
   currentOrder!: OrderInfo;
+  errorMessage = '';
 
   constructor(
     private apiService: ApiService,
@@ -45,8 +46,11 @@ export class PaymentComponent implements OnInit {
         });
         this.store.dispatch(CartActions.emptyCart({ cartId: cartId }));
       },
-      // TODO
-      error: (err) => console.log(err),
+      error: (err) => (this.errorMessage = err.error),
     });
+  }
+
+  onHandleError() {
+    this.errorMessage = '';
   }
 }

@@ -44,10 +44,6 @@ export const orderService = {
 };
 
 function validateInput(input) {
-  if (Object.keys(input.shippingDetails).length === 0) {
-    throw new ValidationError('Shipping details are required', 400);
-  }
-
   if (!input.shippingDetails.zip) {
     throw new ValidationError('ZIP is required', 400);
   }

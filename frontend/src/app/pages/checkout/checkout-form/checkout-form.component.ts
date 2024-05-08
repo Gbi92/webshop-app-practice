@@ -17,6 +17,7 @@ export class CheckoutFormComponent implements OnInit {
   checkoutForm!: FormGroup;
   countryList: Country[] = [];
   orderId = '';
+  errorMessage = '';
 
   constructor(
     private apiService: ApiService,
@@ -63,12 +64,15 @@ export class CheckoutFormComponent implements OnInit {
           relativeTo: this.route,
         });
       },
-      // TODO
-      error: (err) => console.log(err),
+      error: (err) => (this.errorMessage = err.error),
     });
   }
 
   onOrderAdded() {
     this.orderAdded.emit(this.orderId);
+  }
+
+  onHandleError() {
+    this.errorMessage = '';
   }
 }

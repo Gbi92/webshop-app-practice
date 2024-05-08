@@ -107,6 +107,11 @@
         <span *ngIf="checkoutForm.get('phone')?.hasError('required')">This field is required</span>
       </span>
     </div>
-    <button class="checkout-form-button app-button primary" type="submit">{{'Continue' | uppercase}}</button>
+    <button class="checkout-form-button app-button primary" type="submit" [disabled]="checkoutForm.invalid">{{'Continue' | uppercase}}</button>
   </form>
+  <app-alert 
+    *ngIf="errorMessage"
+    [message]="errorMessage"
+    (close)="onHandleError()"
+  ></app-alert>
 </div>
