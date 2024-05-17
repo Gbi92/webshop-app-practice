@@ -39,6 +39,7 @@ import { OrderSummaryComponent } from './pages/checkout/order-summary/order-summ
 import { PaymentComponent } from './pages/checkout/payment/payment.component';
 import { TrimDirective } from './directives/trim.directive';
 import { CheckoutSuccessComponent } from './pages/checkout/checkout-success/checkout-success.component';
+import { UserVerificationComponent } from './pages/user-verification/user-verification.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { CheckoutSuccessComponent } from './pages/checkout/checkout-success/chec
     PaymentComponent,
     TrimDirective,
     CheckoutSuccessComponent,
+    UserVerificationComponent,
   ],
   imports: [
     BrowserModule,

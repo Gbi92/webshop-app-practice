@@ -14,8 +14,15 @@ export const userModel = {
 
   async insertUserData(name, email, password) {
     const userId = uuid();
-    await db.query('INSERT INTO user (id, name, email, password) VALUES (?,?,?,?)', [userId, name, email, password]);
-    const result = await db.query('SELECT email, is_admin, is_verified FROM user WHERE id = ?', [userId]);
+    const userToken = uuid();
+    await db.query('INSERT INTO user (id, name, email, password, verification_token) VALUES (?,?,?,?,?)', [userId, name, email, password, userToken]);
+    const result = await db.query('SELECT id, email, is_admin, is_verified, verification_token AS token FROM user WHERE id = ?', [userId]);
     return result.results[0];
+  },
+
+  async verifyUserById(userId, userToken) {
+    await db.query('UPDATE user SET is_verified=true WHERE id=? AND verification_token=?;', [userId, userToken]);
+    const result = await db.query('SELECT is_verified FROM user WHERE id=?;', [userId]);
+    return result;
   }
 };

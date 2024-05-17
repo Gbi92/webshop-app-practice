@@ -15,6 +15,7 @@ import { OrderSummaryComponent } from './pages/checkout/order-summary/order-summ
 import { PaymentComponent } from './pages/checkout/payment/payment.component';
 import { CheckoutFormComponent } from './pages/checkout/checkout-form/checkout-form.component';
 import { CheckoutSuccessComponent } from './pages/checkout/checkout-success/checkout-success.component';
+import { UserVerificationComponent } from './pages/user-verification/user-verification.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
       { path: ':orderId/success', component: CheckoutSuccessComponent },
     ],
   },
+  { path: 'user-verification', component: UserVerificationComponent },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' },
 ];

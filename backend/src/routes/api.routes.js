@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import { newsController } from '../controllers/newsController';
-import { registrationController } from '../controllers/registrationController';
+import { userController } from '../controllers/userController';
 import { loginController } from '../controllers/loginController';
 import { productController } from '../controllers/productController';
 import { cartController } from '../controllers/cartController';
@@ -25,8 +25,9 @@ router.post('/carts/:cartId/items', cartController.addItemsToCart);
 router.delete('/carts/:cartId/items/:itemId/last', cartController.removeFromCart);
 router.delete('/carts/:cartId/items/:itemId', cartController.removeAllFromCart);
 router.delete('/carts/:cartId', cartController.emptyCart);
-router.post('/register', registrationController.registerUser);
+router.post('/register', userController.registerUser);
 router.post('/login', loginController.login);
+router.put('/users/:userId/verify/:token', userController.verifyUser);
 
 router.use(authorization);
 // authenticated endpoints

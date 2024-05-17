@@ -1,15 +1,24 @@
 import { userModel } from '../models/user';
 import bcrypt from 'bcrypt';
 import { ValidationError } from "../errors/validationError";
+import config from '../config';
+import { emailService } from './emailService/emailService';
+import { emailGenerator } from './emailService/emailGenerator';
 
-export const registrationService = {
+export const userService = {
   async register(userData) {
     validateInput(userData);
 
     const data = await userModel.selectEmailData(userData.email);
     if (data.results.length === 0) {
       const hashedPassword = await this.encryptPassword(userData.password);
-      return userModel.insertUserData(userData.name, userData.email, hashedPassword) 
+      const newUserData = await userModel.insertUserData(userData.name, userData.email, hashedPassword);
+
+      const url = `${config.frontendUrl}/user-verification?user_id=${newUserData.id}&verification_token=${newUserData.token}`;
+      const emailContent = emailGenerator.verificationTemplate(userData.name, url);
+      emailService.sendEmail(userData.email, 'Welcome', emailContent);
+
+      return newUserData;
     } else {
       throw new ValidationError('Email is already taken', 400);
     }
@@ -19,7 +28,16 @@ export const registrationService = {
     const salt = await bcrypt.genSalt()
     const hashedPassword = await bcrypt.hash(password, salt);
     return hashedPassword;
-  }
+  },
+
+  async verify(userData) {
+    const isUserVerified = await userModel.verifyUserById(userData.userId, userData.userToken);
+    if (!isUserVerified) {
+      throw new ValidationError('Verification failed', 400);
+    } 
+
+    return;
+  },
 };
 
 function validateInput(input) {
