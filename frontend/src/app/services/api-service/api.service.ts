@@ -159,6 +159,13 @@ export class ApiService {
     });
   }
 
+  verifyEmail(userId: string, userToken: string) {
+    return this.http.put(
+      `${this.basePath}/users/${userId}/verify/${userToken}`,
+      {}
+    );
+  }
+
   login(userData: UserData): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.basePath}/login`, {
       email: userData.email,

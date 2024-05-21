@@ -1,0 +1,12 @@
+.verification-page {
+  background-color: var(--main-bg-color);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+
+  &-container {
+    padding: 3rem;
+    color: var(--secondary-text-color);
+    font-size: 20px;
+  }
+}

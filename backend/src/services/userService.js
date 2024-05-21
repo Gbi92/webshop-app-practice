@@ -31,12 +31,10 @@ export const userService = {
   },
 
   async verify(userData) {
-    const isUserVerified = await userModel.verifyUserById(userData.userId, userData.userToken);
+    const isUserVerified = await userModel.verifyUserById(userData.userId, userData.token);
     if (!isUserVerified) {
       throw new ValidationError('Verification failed', 400);
-    } 
-
-    return;
+    }
   },
 };
 

@@ -9,7 +9,10 @@ export const emailService = {
   sendEmail(emailTo, subject, htmlContent) {
     const msg = {
       to: emailTo,
-      from: sender,
+      from: {
+        name: 'Friendly Coffe',
+        email: sender
+      },
       subject: subject,
       html: htmlContent,
     }

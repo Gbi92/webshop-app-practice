@@ -20,7 +20,7 @@ export const userController = {
   async verifyUser(req, res) {
     try {
       await userService.verify(req.params);
-      res.status(200);
+      res.status(200).json();
     } catch (error) {
       logger.error(`Cannot verify user due to: ${error.message}`);
       if (error instanceof ValidationError) {

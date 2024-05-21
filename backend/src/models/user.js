@@ -23,6 +23,6 @@ export const userModel = {
   async verifyUserById(userId, userToken) {
     await db.query('UPDATE user SET is_verified=true WHERE id=? AND verification_token=?;', [userId, userToken]);
     const result = await db.query('SELECT is_verified FROM user WHERE id=?;', [userId]);
-    return result;
+    return result.results[0].is_verified === 1;
   }
 };
