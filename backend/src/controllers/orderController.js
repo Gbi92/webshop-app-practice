@@ -31,9 +31,9 @@ export const orderController = {
     }
   },
 
-  async updateOrderStatus(req, res) {
+  async finalizeOrder(req, res) {
     try {
-      const updatedOrderData = await orderService.updateOrderStatus(req.params.orderId);
+      const updatedOrderData = await orderService.finalizeOrder(req.params.orderId, req.body.status);
       res.status(200).json(updatedOrderData);
     } catch (error) {
       logger.error(`Cannot update order status due to: ${error.message}`);

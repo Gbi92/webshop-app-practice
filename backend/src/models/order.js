@@ -71,8 +71,8 @@ export const orderModel = {
     return orderData;
   },
 
-  async updatePendingOrder(orderId) {
-    await db.query('UPDATE `order` SET status="Paid", purchase_date=CURRENT_TIMESTAMP WHERE id=?', [orderId]);
+  async updatePendingOrder(orderId, status) {
+    await db.query('UPDATE `order` SET status=?, purchase_date=CURRENT_TIMESTAMP WHERE id=? AND status="Pending"', [status, orderId]);
     const updatedOrder = await db.query('SELECT * FROM `order` WHERE id=?', [orderId]);
     return updatedOrder.results[0];
   }

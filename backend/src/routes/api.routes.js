@@ -34,6 +34,6 @@ router.use(authorization);
 router.get('/country', countryController.getCountryData);
 router.get('/order/:orderId', orderController.getOrder);
 router.post('/order', orderController.addOrder);
-router.patch('/order/:orderId', orderController.updateOrderStatus);
+router.patch('/order/:orderId', orderController.finalizeOrder);
 
 export default router;

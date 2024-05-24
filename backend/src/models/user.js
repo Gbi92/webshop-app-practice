@@ -12,6 +12,11 @@ export const userModel = {
     return result;
   },
 
+  async selectUserBy(userId) {
+    const result = await db.query('SELECT name, email FROM user WHERE id = ?;', [userId]);
+    return result.results[0];
+  },
+
   async insertUserData(name, email, password) {
     const userId = uuid();
     const userToken = uuid();

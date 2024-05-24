@@ -147,8 +147,10 @@ export class ApiService {
       );
   }
 
-  updateOrderStatus(orderId: string) {
-    return this.http.patch(`${this.basePath}/order/${orderId}`, {});
+  finalizeOrder(orderId: string) {
+    return this.http.patch(`${this.basePath}/order/${orderId}`, {
+      status: 'Paid',
+    });
   }
 
   register(userData: UserData): Observable<RegistrationResponse> {

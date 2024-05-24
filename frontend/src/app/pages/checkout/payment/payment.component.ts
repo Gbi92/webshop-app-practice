@@ -39,7 +39,7 @@ export class PaymentComponent implements OnInit {
 
   pay() {
     const cartId = localStorage.getItem('cartId') ?? '';
-    this.apiService.updateOrderStatus(this.orderId).subscribe({
+    this.apiService.finalizeOrder(this.orderId).subscribe({
       next: () => {
         this.router.navigate([this.orderId, 'success'], {
           relativeTo: this.route.parent,
